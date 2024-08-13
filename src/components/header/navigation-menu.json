@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_header_navigation_menus",
+  "info": {
+    "displayName": "NavigationMenu",
+    "icon": "alien",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Text": {
+      "type": "string"
+    },
+    "Link": {
+      "type": "string"
+    }
+  }
+}

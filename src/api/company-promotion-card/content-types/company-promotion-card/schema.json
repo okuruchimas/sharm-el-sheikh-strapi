@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "company_promotion_cards",
+  "info": {
+    "singularName": "company-promotion-card",
+    "pluralName": "company-promotion-cards",
+    "displayName": "Company Promotion Card"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "discount": {
+      "type": "string"
+    },
+    "images": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "category": {
+      "type": "string"
+    },
+    "Position": {
+      "displayName": "Position",
+      "type": "component",
+      "repeatable": false,
+      "component": "helpers.position"
+    }
+  }
+}
