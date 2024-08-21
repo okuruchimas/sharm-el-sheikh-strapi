@@ -4,20 +4,61 @@
   "info": {
     "singularName": "home",
     "pluralName": "homes",
-    "displayName": "Home"
+    "displayName": "Home",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "Title": {
+    "heroTitle": {
       "type": "string"
     },
-    "company_promotion_card": {
+    "eventCardsTitle": {
+      "type": "string",
+      "required": true
+    },
+    "eventCards": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "oneToMany",
+      "target": "api::event-card.event-card"
+    },
+    "promotionsTitle": {
+      "type": "string",
+      "required": true
+    },
+    "companyPromotionCards": {
+      "type": "relation",
+      "relation": "oneToMany",
       "target": "api::company-promotion-card.company-promotion-card"
+    },
+    "districts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::district.district"
+    },
+    "banner1": {
+      "type": "component",
+      "repeatable": true,
+      "component": "components.banner",
+      "required": true
+    },
+    "announcementsTitle": {
+      "type": "string",
+      "required": true
+    },
+    "announcements": {
+      "type": "component",
+      "repeatable": true,
+      "component": "components.announcement",
+      "required": true
+    },
+    "banner2": {
+      "type": "component",
+      "repeatable": false,
+      "component": "components.banner",
+      "required": true
     }
   }
 }
