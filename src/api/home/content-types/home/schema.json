@@ -10,25 +10,44 @@
   "options": {
     "draftAndPublish": true
   },
-  "pluginOptions": {},
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
   "attributes": {
     "heroTitle": {
-      "type": "string"
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "eventCardsTitle": {
       "type": "string",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
-    "eventCards": {
+    "event_cards": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::event-card.event-card"
     },
     "promotionsTitle": {
       "type": "string",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
-    "companyPromotionCards": {
+    "company_promotion_cards": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::company-promotion-card.company-promotion-card"
@@ -42,23 +61,43 @@
       "type": "component",
       "repeatable": true,
       "component": "components.banner",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "announcementsTitle": {
       "type": "string",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "announcements": {
       "type": "component",
       "repeatable": true,
       "component": "components.announcement",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "banner2": {
       "type": "component",
       "repeatable": false,
       "component": "components.banner",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }

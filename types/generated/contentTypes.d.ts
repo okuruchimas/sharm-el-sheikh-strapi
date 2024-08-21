@@ -795,17 +795,48 @@ export interface ApiCompanyPromotionCardCompanyPromotionCard
     singularName: 'company-promotion-card';
     pluralName: 'company-promotion-cards';
     displayName: 'Company Promotion Card';
-    description: '';
   };
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
-    title: Attribute.String;
-    discount: Attribute.String;
-    images: Attribute.Media;
-    category: Attribute.String;
-    Position: Attribute.Component<'helpers.position'>;
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    discount: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    images: Attribute.Media &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    category: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    position: Attribute.Component<'helpers.position'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     district: Attribute.Relation<
       'api::company-promotion-card.company-promotion-card',
       'oneToOne',
@@ -826,6 +857,12 @@ export interface ApiCompanyPromotionCardCompanyPromotionCard
       'admin::user'
     > &
       Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::company-promotion-card.company-promotion-card',
+      'oneToMany',
+      'api::company-promotion-card.company-promotion-card'
+    >;
+    locale: Attribute.String;
   };
 }
 
@@ -980,9 +1017,24 @@ export interface ApiHeaderHeader extends Schema.SingleType {
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
-    Logo: Attribute.Media;
-    Menu: Attribute.Component<'header.navigation-menu', true>;
+    Logo: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    Menu: Attribute.Component<'header.navigation-menu', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -998,6 +1050,12 @@ export interface ApiHeaderHeader extends Schema.SingleType {
       'admin::user'
     > &
       Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::header.header',
+      'oneToMany',
+      'api::header.header'
+    >;
+    locale: Attribute.String;
   };
 }
 
@@ -1012,16 +1070,38 @@ export interface ApiHomeHome extends Schema.SingleType {
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
-    heroTitle: Attribute.String;
-    eventCardsTitle: Attribute.String & Attribute.Required;
-    eventCards: Attribute.Relation<
+    heroTitle: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    eventCardsTitle: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    event_cards: Attribute.Relation<
       'api::home.home',
       'oneToMany',
       'api::event-card.event-card'
     >;
-    promotionsTitle: Attribute.String & Attribute.Required;
-    companyPromotionCards: Attribute.Relation<
+    promotionsTitle: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    company_promotion_cards: Attribute.Relation<
       'api::home.home',
       'oneToMany',
       'api::company-promotion-card.company-promotion-card'
@@ -1032,11 +1112,33 @@ export interface ApiHomeHome extends Schema.SingleType {
       'api::district.district'
     >;
     banner1: Attribute.Component<'components.banner', true> &
-      Attribute.Required;
-    announcementsTitle: Attribute.String & Attribute.Required;
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    announcementsTitle: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     announcements: Attribute.Component<'components.announcement', true> &
-      Attribute.Required;
-    banner2: Attribute.Component<'components.banner'> & Attribute.Required;
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    banner2: Attribute.Component<'components.banner'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1044,6 +1146,12 @@ export interface ApiHomeHome extends Schema.SingleType {
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::home.home', 'oneToOne', 'admin::user'> &
       Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::home.home',
+      'oneToMany',
+      'api::home.home'
+    >;
+    locale: Attribute.String;
   };
 }
 

@@ -4,38 +4,64 @@
   "info": {
     "singularName": "company-promotion-card",
     "pluralName": "company-promotion-cards",
-    "displayName": "Company Promotion Card",
-    "description": ""
+    "displayName": "Company Promotion Card"
   },
   "options": {
     "draftAndPublish": true
   },
-  "pluginOptions": {},
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
   "attributes": {
     "title": {
-      "type": "string"
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true
     },
     "discount": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "type": "string"
     },
     "images": {
+      "allowedTypes": [
+        "images"
+      ],
       "type": "media",
       "multiple": true,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "required": true
     },
     "category": {
-      "type": "string"
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "string",
+      "required": false
     },
-    "Position": {
-      "displayName": "Position",
+    "position": {
       "type": "component",
       "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "component": "helpers.position"
     },
     "district": {
