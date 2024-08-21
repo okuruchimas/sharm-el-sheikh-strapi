@@ -795,6 +795,7 @@ export interface ApiCompanyPromotionCardCompanyPromotionCard
     singularName: 'company-promotion-card';
     pluralName: 'company-promotion-cards';
     displayName: 'Company Promotion Card';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -834,13 +835,37 @@ export interface ApiCompanyPromotionCardCompanyPromotionCard
     position: Attribute.Component<'helpers.position'> &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }>;
     district: Attribute.Relation<
       'api::company-promotion-card.company-promotion-card',
       'oneToOne',
       'api::district.district'
+    >;
+    description: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Attribute.DefaultTo<'Description'>;
+    youTubeVideoId: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    discountBanner: Attribute.Component<'components.banner'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    services: Attribute.Relation<
+      'api::company-promotion-card.company-promotion-card',
+      'oneToMany',
+      'api::service.service'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -893,10 +918,9 @@ export interface ApiDistrictDistrict extends Schema.CollectionType {
       }>;
     key: Attribute.String &
       Attribute.Required &
-      Attribute.Unique &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }>;
     createdAt: Attribute.DateTime;
@@ -972,14 +996,14 @@ export interface ApiEventCardEventCard extends Schema.CollectionType {
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }>;
     image: Attribute.Media &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }>;
     createdAt: Attribute.DateTime;
@@ -1155,6 +1179,65 @@ export interface ApiHomeHome extends Schema.SingleType {
   };
 }
 
+export interface ApiServiceService extends Schema.CollectionType {
+  collectionName: 'services';
+  info: {
+    singularName: 'service';
+    pluralName: 'services';
+    displayName: 'Service';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    text: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    icon: Attribute.Media &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    company_promotion_card: Attribute.Relation<
+      'api::service.service',
+      'manyToOne',
+      'api::company-promotion-card.company-promotion-card'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::service.service',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::service.service',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::service.service',
+      'oneToMany',
+      'api::service.service'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1178,6 +1261,7 @@ declare module '@strapi/types' {
       'api::event-card.event-card': ApiEventCardEventCard;
       'api::header.header': ApiHeaderHeader;
       'api::home.home': ApiHomeHome;
+      'api::service.service': ApiServiceService;
     }
   }
 }

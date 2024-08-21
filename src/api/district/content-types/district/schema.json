@@ -29,12 +29,12 @@
     "key": {
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
         }
       },
       "type": "string",
       "required": true,
-      "unique": true
+      "unique": false
     }
   }
 }
