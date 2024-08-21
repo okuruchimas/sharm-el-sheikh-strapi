@@ -4,7 +4,8 @@
   "info": {
     "singularName": "company-promotion-card",
     "pluralName": "company-promotion-cards",
-    "displayName": "Company Promotion Card"
+    "displayName": "Company Promotion Card",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -18,14 +19,15 @@
       "type": "string"
     },
     "images": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
     },
     "category": {
       "type": "string"
@@ -35,6 +37,11 @@
       "type": "component",
       "repeatable": false,
       "component": "helpers.position"
+    },
+    "district": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::district.district"
     }
   }
 }

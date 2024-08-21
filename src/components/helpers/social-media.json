@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_helpers_social_medias",
+  "info": {
+    "displayName": "Social Media",
+    "icon": "twitter"
+  },
+  "options": {},
+  "attributes": {
+    "socialLink": {
+      "type": "string",
+      "required": true
+    },
+    "socialMediaName": {
+      "type": "string",
+      "required": true
+    },
+    "icon": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}

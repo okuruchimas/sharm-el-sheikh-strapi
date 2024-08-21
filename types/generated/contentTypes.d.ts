@@ -795,6 +795,7 @@ export interface ApiCompanyPromotionCardCompanyPromotionCard
     singularName: 'company-promotion-card';
     pluralName: 'company-promotion-cards';
     displayName: 'Company Promotion Card';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -805,6 +806,11 @@ export interface ApiCompanyPromotionCardCompanyPromotionCard
     images: Attribute.Media;
     category: Attribute.String;
     Position: Attribute.Component<'helpers.position'>;
+    district: Attribute.Relation<
+      'api::company-promotion-card.company-promotion-card',
+      'oneToOne',
+      'api::district.district'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -823,34 +829,143 @@ export interface ApiCompanyPromotionCardCompanyPromotionCard
   };
 }
 
-export interface ApiFilmFilm extends Schema.CollectionType {
-  collectionName: 'films';
+export interface ApiDistrictDistrict extends Schema.CollectionType {
+  collectionName: 'districts';
   info: {
-    singularName: 'film';
-    pluralName: 'films';
-    displayName: 'film';
+    singularName: 'district';
+    pluralName: 'districts';
+    displayName: 'District';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
-    Title: Attribute.String;
-    Released: Attribute.Date;
-    Director: Attribute.String;
-    Plot: Attribute.Text;
-    Slug: Attribute.String;
-    reviews: Attribute.Relation<
-      'api::film.film',
-      'oneToMany',
-      'api::review.review'
-    >;
+    displayValue: Attribute.String &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    key: Attribute.String &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::film.film', 'oneToOne', 'admin::user'> &
+    createdBy: Attribute.Relation<
+      'api::district.district',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private;
-    updatedBy: Attribute.Relation<'api::film.film', 'oneToOne', 'admin::user'> &
+    updatedBy: Attribute.Relation<
+      'api::district.district',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::district.district',
+      'oneToMany',
+      'api::district.district'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiEventCardEventCard extends Schema.CollectionType {
+  collectionName: 'event_cards';
+  info: {
+    singularName: 'event-card';
+    pluralName: 'event-cards';
+    displayName: 'Event Card';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    date: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    price: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    location: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    url: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    image: Attribute.Media &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::event-card.event-card',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::event-card.event-card',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::event-card.event-card',
+      'oneToMany',
+      'api::event-card.event-card'
+    >;
+    locale: Attribute.String;
   };
 }
 
@@ -892,60 +1007,42 @@ export interface ApiHomeHome extends Schema.SingleType {
     singularName: 'home';
     pluralName: 'homes';
     displayName: 'Home';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    Title: Attribute.String;
-    company_promotion_card: Attribute.Relation<
-      'api::home.home',
-      'oneToOne',
-      'api::company-promotion-card.company-promotion-card'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::home.home', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::home.home', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
-export interface ApiReviewReview extends Schema.CollectionType {
-  collectionName: 'reviews';
-  info: {
-    singularName: 'review';
-    pluralName: 'reviews';
-    displayName: 'Review';
     description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    review: Attribute.Text;
-    reviewer: Attribute.String;
-    Film: Attribute.Relation<
-      'api::review.review',
-      'manyToOne',
-      'api::film.film'
+    heroTitle: Attribute.String;
+    eventCardsTitle: Attribute.String & Attribute.Required;
+    eventCards: Attribute.Relation<
+      'api::home.home',
+      'oneToMany',
+      'api::event-card.event-card'
     >;
+    promotionsTitle: Attribute.String & Attribute.Required;
+    companyPromotionCards: Attribute.Relation<
+      'api::home.home',
+      'oneToMany',
+      'api::company-promotion-card.company-promotion-card'
+    >;
+    districts: Attribute.Relation<
+      'api::home.home',
+      'oneToMany',
+      'api::district.district'
+    >;
+    banner1: Attribute.Component<'components.banner', true> &
+      Attribute.Required;
+    announcementsTitle: Attribute.String & Attribute.Required;
+    announcements: Attribute.Component<'components.announcement', true> &
+      Attribute.Required;
+    banner2: Attribute.Component<'components.banner'> & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::review.review',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'api::home.home', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::review.review',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'api::home.home', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -969,10 +1066,10 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
       'api::company-promotion-card.company-promotion-card': ApiCompanyPromotionCardCompanyPromotionCard;
-      'api::film.film': ApiFilmFilm;
+      'api::district.district': ApiDistrictDistrict;
+      'api::event-card.event-card': ApiEventCardEventCard;
       'api::header.header': ApiHeaderHeader;
       'api::home.home': ApiHomeHome;
-      'api::review.review': ApiReviewReview;
     }
   }
 }
