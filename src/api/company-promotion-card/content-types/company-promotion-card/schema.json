@@ -46,15 +46,6 @@
         }
       }
     },
-    "category": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
-      "type": "string",
-      "required": false
-    },
     "position": {
       "type": "component",
       "repeatable": false,
@@ -64,11 +55,6 @@
         }
       },
       "component": "helpers.position"
-    },
-    "district": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::district.district"
     },
     "description": {
       "pluginOptions": {
@@ -97,11 +83,26 @@
       },
       "component": "components.banner"
     },
-    "services": {
+    "touchText": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "touchLink": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "filters": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::service.service",
-      "mappedBy": "company_promotion_card"
+      "target": "api::filters.filters"
     }
   }
 }

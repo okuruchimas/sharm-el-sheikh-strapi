@@ -4,7 +4,8 @@
   "info": {
     "singularName": "service",
     "pluralName": "services",
-    "displayName": "Service"
+    "displayName": "Service",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -25,23 +26,17 @@
       "required": true
     },
     "icon": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images"
       ],
-      "type": "media",
-      "multiple": false,
       "pluginOptions": {
         "i18n": {
           "localized": false
         }
-      },
-      "required": true
-    },
-    "company_promotion_card": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::company-promotion-card.company-promotion-card",
-      "inversedBy": "services"
+      }
     }
   }
 }

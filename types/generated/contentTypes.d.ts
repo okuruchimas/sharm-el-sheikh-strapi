@@ -826,23 +826,12 @@ export interface ApiCompanyPromotionCardCompanyPromotionCard
           localized: false;
         };
       }>;
-    category: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
     position: Attribute.Component<'helpers.position'> &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
         };
       }>;
-    district: Attribute.Relation<
-      'api::company-promotion-card.company-promotion-card',
-      'oneToOne',
-      'api::district.district'
-    >;
     description: Attribute.Text &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -862,10 +851,22 @@ export interface ApiCompanyPromotionCardCompanyPromotionCard
           localized: true;
         };
       }>;
-    services: Attribute.Relation<
+    touchText: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    touchLink: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    filters: Attribute.Relation<
       'api::company-promotion-card.company-promotion-card',
       'oneToMany',
-      'api::service.service'
+      'api::filters.filters'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -886,62 +887,6 @@ export interface ApiCompanyPromotionCardCompanyPromotionCard
       'api::company-promotion-card.company-promotion-card',
       'oneToMany',
       'api::company-promotion-card.company-promotion-card'
-    >;
-    locale: Attribute.String;
-  };
-}
-
-export interface ApiDistrictDistrict extends Schema.CollectionType {
-  collectionName: 'districts';
-  info: {
-    singularName: 'district';
-    pluralName: 'districts';
-    displayName: 'District';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    displayValue: Attribute.String &
-      Attribute.Required &
-      Attribute.Unique &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    key: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::district.district',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::district.district',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    localizations: Attribute.Relation<
-      'api::district.district',
-      'oneToMany',
-      'api::district.district'
     >;
     locale: Attribute.String;
   };
@@ -1027,6 +972,37 @@ export interface ApiEventCardEventCard extends Schema.CollectionType {
       'api::event-card.event-card'
     >;
     locale: Attribute.String;
+  };
+}
+
+export interface ApiFiltersFilters extends Schema.CollectionType {
+  collectionName: 'filteres';
+  info: {
+    singularName: 'filters';
+    pluralName: 'filteres';
+    displayName: 'Filters';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    text: Attribute.String;
+    key: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::filters.filters',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::filters.filters',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
   };
 }
 
@@ -1130,11 +1106,6 @@ export interface ApiHomeHome extends Schema.SingleType {
       'oneToMany',
       'api::company-promotion-card.company-promotion-card'
     >;
-    districts: Attribute.Relation<
-      'api::home.home',
-      'oneToMany',
-      'api::district.district'
-    >;
     banner1: Attribute.Component<'components.banner', true> &
       Attribute.Required &
       Attribute.SetPluginOptions<{
@@ -1163,6 +1134,11 @@ export interface ApiHomeHome extends Schema.SingleType {
           localized: true;
         };
       }>;
+    filters: Attribute.Relation<
+      'api::home.home',
+      'oneToMany',
+      'api::filters.filters'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1185,6 +1161,7 @@ export interface ApiServiceService extends Schema.CollectionType {
     singularName: 'service';
     pluralName: 'services';
     displayName: 'Service';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1209,11 +1186,6 @@ export interface ApiServiceService extends Schema.CollectionType {
           localized: false;
         };
       }>;
-    company_promotion_card: Attribute.Relation<
-      'api::service.service',
-      'manyToOne',
-      'api::company-promotion-card.company-promotion-card'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1257,8 +1229,8 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
       'api::company-promotion-card.company-promotion-card': ApiCompanyPromotionCardCompanyPromotionCard;
-      'api::district.district': ApiDistrictDistrict;
       'api::event-card.event-card': ApiEventCardEventCard;
+      'api::filters.filters': ApiFiltersFilters;
       'api::header.header': ApiHeaderHeader;
       'api::home.home': ApiHomeHome;
       'api::service.service': ApiServiceService;
