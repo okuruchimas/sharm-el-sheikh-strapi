@@ -60,11 +60,10 @@ export interface HelpersSocialMedia extends Schema.Component {
   info: {
     displayName: 'Social Media';
     icon: 'twitter';
-    description: '';
   };
   attributes: {
-    socialLink: Attribute.String & Attribute.Required;
     icon: Attribute.Media & Attribute.Required;
+    socialLink: Attribute.String & Attribute.Required;
   };
 }
 
