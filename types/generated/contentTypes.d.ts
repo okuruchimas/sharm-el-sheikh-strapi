@@ -1012,6 +1012,7 @@ export interface ApiFooterFooter extends Schema.SingleType {
     singularName: 'footer';
     pluralName: 'footers';
     displayName: 'Footer';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1023,10 +1024,9 @@ export interface ApiFooterFooter extends Schema.SingleType {
   };
   attributes: {
     socialIcons: Attribute.Component<'helpers.social-media', true> &
-      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }>;
     createdAt: Attribute.DateTime;
