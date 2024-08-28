@@ -103,6 +103,35 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::filters.filters"
+    },
+    "averageRating": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "float",
+      "required": true,
+      "default": 0,
+      "max": 5,
+      "min": 0
+    },
+    "totalComments": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "biginteger",
+      "default": "0",
+      "required": true,
+      "min": "0"
+    },
+    "services": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::service.service",
+      "mappedBy": "company_promotion_card"
     }
   }
 }

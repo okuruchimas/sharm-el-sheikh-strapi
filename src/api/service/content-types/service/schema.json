@@ -37,6 +37,12 @@
           "localized": false
         }
       }
+    },
+    "company_promotion_card": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::company-promotion-card.company-promotion-card",
+      "inversedBy": "services"
     }
   }
 }
