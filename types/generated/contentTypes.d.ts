@@ -868,6 +868,40 @@ export interface ApiCompanyPromotionCardCompanyPromotionCard
       'oneToMany',
       'api::filters.filters'
     >;
+    averageRating: Attribute.Float &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.SetMinMax<
+        {
+          min: 0;
+          max: 5;
+        },
+        number
+      > &
+      Attribute.DefaultTo<0>;
+    totalComments: Attribute.BigInteger &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.SetMinMax<
+        {
+          min: '0';
+        },
+        string
+      > &
+      Attribute.DefaultTo<'0'>;
+    services: Attribute.Relation<
+      'api::company-promotion-card.company-promotion-card',
+      'oneToMany',
+      'api::service.service'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1233,6 +1267,11 @@ export interface ApiServiceService extends Schema.CollectionType {
           localized: false;
         };
       }>;
+    company_promotion_card: Attribute.Relation<
+      'api::service.service',
+      'manyToOne',
+      'api::company-promotion-card.company-promotion-card'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
