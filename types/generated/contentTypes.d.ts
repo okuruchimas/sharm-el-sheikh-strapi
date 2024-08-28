@@ -837,8 +837,7 @@ export interface ApiCompanyPromotionCardCompanyPromotionCard
         i18n: {
           localized: true;
         };
-      }> &
-      Attribute.DefaultTo<'Description'>;
+      }>;
     youTubeVideoId: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -902,6 +901,14 @@ export interface ApiCompanyPromotionCardCompanyPromotionCard
       'oneToMany',
       'api::service.service'
     >;
+    slug: Attribute.String &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -983,6 +990,14 @@ export interface ApiEventCardEventCard extends Schema.CollectionType {
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
+        };
+      }>;
+    slug: Attribute.String &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
         };
       }>;
     createdAt: Attribute.DateTime;
