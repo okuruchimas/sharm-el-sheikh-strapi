@@ -903,10 +903,9 @@ export interface ApiCompanyPromotionCardCompanyPromotionCard
     >;
     slug: Attribute.String &
       Attribute.Required &
-      Attribute.Unique &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }>;
     location: Attribute.Text &
@@ -1000,10 +999,9 @@ export interface ApiEventCardEventCard extends Schema.CollectionType {
       }>;
     slug: Attribute.String &
       Attribute.Required &
-      Attribute.Unique &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }>;
     createdAt: Attribute.DateTime;
