@@ -6,7 +6,11 @@ export default [
     name: 'strapi::cors',
     config: {
       enabled: true,
-      origin: ['http://localhost:3000', 'https://sharm-el-sheikh.vercel.app'],
+      origin: [
+        'http://localhost:3000',
+        'https://sharm-el-sheikh.vercel.app',
+        'https://beautiful-boot-1db2e6c4ea.strapiapp.com',
+      ],
       headers: '*',
       methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     },
