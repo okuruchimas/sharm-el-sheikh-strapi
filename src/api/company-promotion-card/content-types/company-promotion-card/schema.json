@@ -150,6 +150,12 @@
       },
       "type": "text",
       "required": false
+    },
+    "comments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::comment.comment",
+      "mappedBy": "company_promotion_card"
     }
   }
 }
