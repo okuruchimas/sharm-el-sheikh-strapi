@@ -153,9 +153,9 @@
     },
     "comments": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::comment.comment",
-      "mappedBy": "company_promotion_card"
+      "mappedBy": "company_promotion_cards"
     }
   }
 }

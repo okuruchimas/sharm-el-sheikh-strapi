@@ -811,9 +811,9 @@ export interface ApiCommentComment extends Schema.CollectionType {
         number
       >;
     email: Attribute.String & Attribute.Required;
-    company_promotion_card: Attribute.Relation<
+    company_promotion_cards: Attribute.Relation<
       'api::comment.comment',
-      'manyToOne',
+      'manyToMany',
       'api::company-promotion-card.company-promotion-card'
     >;
     createdAt: Attribute.DateTime;
@@ -962,7 +962,7 @@ export interface ApiCompanyPromotionCardCompanyPromotionCard
       }>;
     comments: Attribute.Relation<
       'api::company-promotion-card.company-promotion-card',
-      'oneToMany',
+      'manyToMany',
       'api::comment.comment'
     >;
     createdAt: Attribute.DateTime;
