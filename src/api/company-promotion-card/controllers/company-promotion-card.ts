@@ -48,31 +48,32 @@ export default factories.createCoreController(
           (comment) => comment.email === email
         );
 
-        let commentId;
+        let updatedComment;
 
         if (existingComment) {
-          await strapi
+          updatedComment = await strapi
             .service("api::comment.comment")
             .update(existingComment.id, {
               data: { text, rating },
             });
-          commentId = existingComment.id;
         } else {
-          const newComment = await strapi
-            .service("api::comment.comment")
-            .create({
-              data: {
-                text,
-                rating,
-                email,
-                company_promotion_card: companyCard.id,
-              },
-            });
-          commentId = newComment.id;
+          updatedComment = await strapi.service("api::comment.comment").create({
+            data: {
+              text,
+              rating,
+              email,
+              company_promotion_card: companyCard.id,
+            },
+          });
         }
 
+        const updatedCommentId = updatedComment.id;
+
         for (const localizedCompanyCard of localizedCompanyCards) {
-          const updatedComments = [...(companyCard.comments || []), commentId];
+          const updatedComments = [
+            ...(companyCard.comments || []),
+            updatedCommentId,
+          ];
 
           await strapi
             .service("api::company-promotion-card.company-promotion-card")
@@ -105,9 +106,7 @@ export default factories.createCoreController(
           )
         );
 
-        return ctx.created({
-          message: "Comment added or updated successfully.",
-        });
+        return ctx.created(updatedComment);
       } catch (err) {
         ctx.throw(500, err);
       }
