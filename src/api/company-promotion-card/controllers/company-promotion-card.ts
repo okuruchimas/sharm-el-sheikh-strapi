@@ -26,7 +26,10 @@ export default factories.createCoreController(
 
         const companyPromotionCard = await strapi
           .service("api::company-promotion-card.company-promotion-card")
-          .find({ filters: { slug }, populate: { comments: true } });
+          .find({
+            filters: { slug },
+            populate: { comments: true, localizations: true },
+          });
 
         if (
           !companyPromotionCard ||
@@ -36,51 +39,71 @@ export default factories.createCoreController(
         }
 
         const companyCard = companyPromotionCard.results[0];
+        const localizedCompanyCards = [
+          companyCard,
+          ...companyCard.localizations,
+        ];
+
         const existingComment = companyCard.comments.find(
           (comment) => comment.email === email
         );
+
+        let commentId;
 
         if (existingComment) {
           await strapi
             .service("api::comment.comment")
             .update(existingComment.id, {
+              data: { text, rating },
+            });
+          commentId = existingComment.id;
+        } else {
+          const newComment = await strapi
+            .service("api::comment.comment")
+            .create({
               data: {
                 text,
                 rating,
+                email,
+                company_promotion_card: companyCard.id,
               },
             });
-        } else {
-          await strapi.service("api::comment.comment").create({
-            data: {
-              text,
-              rating,
-              email,
-              company_promotion_card: companyCard.id,
-            },
-          });
+          commentId = newComment.id;
         }
 
-        const allComments = await strapi
-          .service("api::comment.comment")
-          .find({ filters: { company_promotion_card: companyCard.id } });
+        for (const localizedCompanyCard of localizedCompanyCards) {
+          const updatedComments = [...(companyCard.comments || []), commentId];
 
-        const comments = allComments.results;
-        const newTotalComments = comments.length;
+          await strapi
+            .service("api::company-promotion-card.company-promotion-card")
+            .update(localizedCompanyCard.id, {
+              data: { comments: updatedComments },
+            });
+        }
 
-        const totalRating = comments.reduce(
+        const allComments = await strapi.service("api::comment.comment").find({
+          filters: { company_promotion_card: companyCard.id },
+        });
+
+        const totalComments = allComments.results.length;
+        const totalRating = allComments.results.reduce(
           (sum, comment) => sum + comment.rating,
           0
         );
-        const newAverageRating = totalRating / newTotalComments;
+        const newAverageRating = totalRating / totalComments;
 
-        await strapi
-          .service("api::company-promotion-card.company-promotion-card")
-          .update(companyCard.id, {
-            data: {
-              totalComments: newTotalComments,
-              averageRating: newAverageRating.toFixed(1),
-            },
-          });
+        const updateData = {
+          totalComments,
+          averageRating: newAverageRating.toFixed(1),
+        };
+
+        await Promise.all(
+          localizedCompanyCards.map((localizedCompanyCard) =>
+            strapi
+              .service("api::company-promotion-card.company-promotion-card")
+              .update(localizedCompanyCard.id, { data: updateData })
+          )
+        );
 
         return ctx.created({
           message: "Comment added or updated successfully.",
