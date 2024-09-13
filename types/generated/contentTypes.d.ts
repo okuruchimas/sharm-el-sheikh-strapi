@@ -1072,14 +1072,14 @@ export interface ApiEventCardEventCard extends Schema.CollectionType {
     };
   };
   attributes: {
-    date: Attribute.String &
+    title: Attribute.String &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
-    title: Attribute.String &
+    date: Attribute.String &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
