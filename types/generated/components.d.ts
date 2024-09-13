@@ -1,20 +1,5 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
-export interface ComponentsAnnouncement extends Schema.Component {
-  collectionName: 'components_components_announcements';
-  info: {
-    displayName: 'Announcement';
-    icon: 'envelop';
-    description: '';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    text: Attribute.Text & Attribute.Required;
-    image: Attribute.Media & Attribute.Required;
-    socialLinkls: Attribute.Component<'helpers.social-media', true>;
-  };
-}
-
 export interface ComponentsBanner extends Schema.Component {
   collectionName: 'components_helpers_banners';
   info: {
@@ -70,7 +55,6 @@ export interface HelpersSocialMedia extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
-      'components.announcement': ComponentsAnnouncement;
       'components.banner': ComponentsBanner;
       'header.navigation-menu': HeaderNavigationMenu;
       'helpers.position': HelpersPosition;

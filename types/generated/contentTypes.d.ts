@@ -788,6 +788,72 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiAnnouncementAnnouncement extends Schema.CollectionType {
+  collectionName: 'announcements';
+  info: {
+    singularName: 'announcement';
+    pluralName: 'announcements';
+    displayName: 'Announcement';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    title: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    text: Attribute.RichText &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    image: Attribute.Media &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    socialLinks: Attribute.Component<'helpers.social-media', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::announcement.announcement',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::announcement.announcement',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::announcement.announcement',
+      'oneToMany',
+      'api::announcement.announcement'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiCommentComment extends Schema.CollectionType {
   collectionName: 'comments';
   info: {
@@ -1048,13 +1114,6 @@ export interface ApiEventCardEventCard extends Schema.CollectionType {
           localized: false;
         };
       }>;
-    slug: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1252,11 +1311,6 @@ export interface ApiHomeHome extends Schema.SingleType {
           localized: true;
         };
       }>;
-    company_promotion_cards: Attribute.Relation<
-      'api::home.home',
-      'oneToMany',
-      'api::company-promotion-card.company-promotion-card'
-    >;
     banner1: Attribute.Component<'components.banner', true> &
       Attribute.Required &
       Attribute.SetPluginOptions<{
@@ -1265,13 +1319,6 @@ export interface ApiHomeHome extends Schema.SingleType {
         };
       }>;
     announcementsTitle: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    announcements: Attribute.Component<'components.announcement', true> &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -1289,6 +1336,18 @@ export interface ApiHomeHome extends Schema.SingleType {
       'api::home.home',
       'oneToMany',
       'api::filters.filters'
+    >;
+    mapTitle: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    announcements: Attribute.Relation<
+      'api::home.home',
+      'oneToMany',
+      'api::announcement.announcement'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1384,6 +1443,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::announcement.announcement': ApiAnnouncementAnnouncement;
       'api::comment.comment': ApiCommentComment;
       'api::company-promotion-card.company-promotion-card': ApiCompanyPromotionCardCompanyPromotionCard;
       'api::event-card.event-card': ApiEventCardEventCard;
