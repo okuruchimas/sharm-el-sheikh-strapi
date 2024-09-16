@@ -1061,6 +1061,7 @@ export interface ApiEventCardEventCard extends Schema.CollectionType {
     singularName: 'event-card';
     pluralName: 'event-cards';
     displayName: 'Event Card';
+    description: '';
   };
   options: {
     draftAndPublish: true;
