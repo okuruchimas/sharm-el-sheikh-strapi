@@ -4,7 +4,8 @@
   "info": {
     "singularName": "event-card",
     "pluralName": "event-cards",
-    "displayName": "Event Card"
+    "displayName": "Event Card",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -61,20 +62,17 @@
       "required": true
     },
     "image": {
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ],
       "type": "media",
-      "multiple": true,
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ],
       "pluginOptions": {
         "i18n": {
           "localized": false
         }
-      },
-      "required": true
+      }
     }
   }
 }
