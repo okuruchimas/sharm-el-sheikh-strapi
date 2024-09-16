@@ -1055,89 +1055,6 @@ export interface ApiCompanyPromotionCardCompanyPromotionCard
   };
 }
 
-export interface ApiEventCardEventCard extends Schema.CollectionType {
-  collectionName: 'event_cards';
-  info: {
-    singularName: 'event-card';
-    pluralName: 'event-cards';
-    displayName: 'Event Card';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    date: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    price: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    location: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    url: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    image: Attribute.Media &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::event-card.event-card',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::event-card.event-card',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    localizations: Attribute.Relation<
-      'api::event-card.event-card',
-      'oneToMany',
-      'api::event-card.event-card'
-    >;
-    locale: Attribute.String;
-  };
-}
-
 export interface ApiFiltersFilters extends Schema.CollectionType {
   collectionName: 'filteres';
   info: {
@@ -1299,11 +1216,6 @@ export interface ApiHomeHome extends Schema.SingleType {
           localized: true;
         };
       }>;
-    event_cards: Attribute.Relation<
-      'api::home.home',
-      'oneToMany',
-      'api::event-card.event-card'
-    >;
     promotionsTitle: Attribute.String &
       Attribute.Required &
       Attribute.SetPluginOptions<{
@@ -1446,7 +1358,6 @@ declare module '@strapi/types' {
       'api::announcement.announcement': ApiAnnouncementAnnouncement;
       'api::comment.comment': ApiCommentComment;
       'api::company-promotion-card.company-promotion-card': ApiCompanyPromotionCardCompanyPromotionCard;
-      'api::event-card.event-card': ApiEventCardEventCard;
       'api::filters.filters': ApiFiltersFilters;
       'api::footer.footer': ApiFooterFooter;
       'api::header.header': ApiHeaderHeader;
