@@ -33,11 +33,6 @@
         }
       }
     },
-    "event_cards": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::event-card.event-card"
-    },
     "promotionsTitle": {
       "type": "string",
       "required": true,
