@@ -1287,6 +1287,7 @@ export interface ApiHomeHome extends Schema.SingleType {
   };
   attributes: {
     heroTitle: Attribute.String &
+      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1311,7 +1312,7 @@ export interface ApiHomeHome extends Schema.SingleType {
           localized: true;
         };
       }>;
-    banner1: Attribute.Component<'components.banner', true> &
+    banner1: Attribute.Component<'components.banner'> &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
