@@ -4,7 +4,8 @@
   "info": {
     "singularName": "area",
     "pluralName": "areas",
-    "displayName": "Area"
+    "displayName": "Area",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -27,7 +28,7 @@
     "key": {
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
         }
       },
       "type": "string",
