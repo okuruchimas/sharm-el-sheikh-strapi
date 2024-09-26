@@ -162,6 +162,11 @@
       "relation": "oneToMany",
       "target": "api::category.category",
       "mappedBy": "company_promotion_card"
+    },
+    "area": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::area.area"
     }
   }
 }
