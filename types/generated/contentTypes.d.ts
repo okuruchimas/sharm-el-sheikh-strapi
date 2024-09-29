@@ -946,9 +946,9 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
           localized: false;
         };
       }>;
-    company_promotion_card: Attribute.Relation<
+    company_promotion_cards: Attribute.Relation<
       'api::category.category',
-      'manyToOne',
+      'manyToMany',
       'api::company-promotion-card.company-promotion-card'
     >;
     createdAt: Attribute.DateTime;
@@ -1154,7 +1154,7 @@ export interface ApiCompanyPromotionCardCompanyPromotionCard
     >;
     categories: Attribute.Relation<
       'api::company-promotion-card.company-promotion-card',
-      'oneToMany',
+      'manyToMany',
       'api::category.category'
     >;
     area: Attribute.Relation<

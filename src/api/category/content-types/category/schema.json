@@ -47,9 +47,9 @@
       },
       "required": true
     },
-    "company_promotion_card": {
+    "company_promotion_cards": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::company-promotion-card.company-promotion-card",
       "inversedBy": "categories"
     }

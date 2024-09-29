@@ -159,9 +159,9 @@
     },
     "categories": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::category.category",
-      "mappedBy": "company_promotion_card"
+      "mappedBy": "company_promotion_cards"
     },
     "area": {
       "type": "relation",
