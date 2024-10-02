@@ -161,6 +161,12 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::area.area"
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "mappedBy": "company_promotion_cards"
     }
   }
 }
