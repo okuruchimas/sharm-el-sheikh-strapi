@@ -157,12 +157,6 @@
       "target": "api::comment.comment",
       "mappedBy": "company_promotion_cards"
     },
-    "categories": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::category.category",
-      "mappedBy": "company_promotion_cards"
-    },
     "area": {
       "type": "relation",
       "relation": "oneToOne",
