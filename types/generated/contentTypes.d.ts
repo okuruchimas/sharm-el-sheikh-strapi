@@ -1259,6 +1259,14 @@ export interface ApiEventCardEventCard extends Schema.CollectionType {
           localized: false;
         };
       }>;
+    index: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<0>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1511,6 +1519,74 @@ export interface ApiHomeHome extends Schema.SingleType {
   };
 }
 
+export interface ApiHotspotsPageHotspotsPage extends Schema.SingleType {
+  collectionName: 'hotspots_pages';
+  info: {
+    singularName: 'hotspots-page';
+    pluralName: 'hotspots-pages';
+    displayName: 'Hotspots Page';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    eventsTitle: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    clubsTitle: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    clubsInfo: Attribute.Text &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    bottomBanner: Attribute.Component<'components.banner', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::hotspots-page.hotspots-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::hotspots-page.hotspots-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::hotspots-page.hotspots-page',
+      'oneToMany',
+      'api::hotspots-page.hotspots-page'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiServiceService extends Schema.CollectionType {
   collectionName: 'services';
   info: {
@@ -1599,6 +1675,7 @@ declare module '@strapi/types' {
       'api::footer.footer': ApiFooterFooter;
       'api::header.header': ApiHeaderHeader;
       'api::home.home': ApiHomeHome;
+      'api::hotspots-page.hotspots-page': ApiHotspotsPageHotspotsPage;
       'api::service.service': ApiServiceService;
     }
   }
