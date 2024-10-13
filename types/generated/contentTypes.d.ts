@@ -1557,7 +1557,7 @@ export interface ApiHotspotsPageHotspotsPage extends Schema.SingleType {
           localized: true;
         };
       }>;
-    bottomBanner: Attribute.Component<'components.banner', true> &
+    bottomBanner: Attribute.Component<'components.banner'> &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
