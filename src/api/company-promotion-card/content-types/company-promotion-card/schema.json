@@ -121,10 +121,9 @@
           "localized": false
         }
       },
-      "type": "biginteger",
-      "default": "0",
-      "required": true,
-      "min": "0"
+      "type": "integer",
+      "default": 0,
+      "required": true
     },
     "services": {
       "type": "relation",

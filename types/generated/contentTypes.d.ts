@@ -1129,20 +1129,14 @@ export interface ApiCompanyPromotionCardCompanyPromotionCard
         number
       > &
       Attribute.DefaultTo<0>;
-    totalComments: Attribute.BigInteger &
+    totalComments: Attribute.Integer &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
         };
       }> &
-      Attribute.SetMinMax<
-        {
-          min: '0';
-        },
-        string
-      > &
-      Attribute.DefaultTo<'0'>;
+      Attribute.DefaultTo<0>;
     services: Attribute.Relation<
       'api::company-promotion-card.company-promotion-card',
       'oneToMany',
