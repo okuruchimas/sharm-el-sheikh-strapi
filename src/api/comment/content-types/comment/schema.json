@@ -31,6 +31,12 @@
       "relation": "manyToMany",
       "target": "api::company-promotion-card.company-promotion-card",
       "inversedBy": "comments"
+    },
+    "animator": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::animator.animator",
+      "inversedBy": "comments"
     }
   }
 }

@@ -16,6 +16,21 @@ export interface ComponentsBanner extends Schema.Component {
   };
 }
 
+export interface ComponentsEntertainmentService extends Schema.Component {
+  collectionName: 'components_components_entertainment_services';
+  info: {
+    displayName: 'Entertainment Service';
+    description: '';
+  };
+  attributes: {
+    image: Attribute.Media & Attribute.Required;
+    serviceName: Attribute.String & Attribute.Required;
+    duration: Attribute.String & Attribute.Required;
+    place: Attribute.String & Attribute.Required;
+    price: Attribute.String & Attribute.Required;
+  };
+}
+
 export interface HeaderNavigationMenu extends Schema.Component {
   collectionName: 'components_header_navigation_menus';
   info: {
@@ -53,13 +68,26 @@ export interface HelpersSocialMedia extends Schema.Component {
   };
 }
 
+export interface HelpersStringArray extends Schema.Component {
+  collectionName: 'components_helpers_string_arrays';
+  info: {
+    displayName: 'stringArray';
+    icon: '';
+  };
+  attributes: {
+    value: Attribute.String & Attribute.Required;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'components.banner': ComponentsBanner;
+      'components.entertainment-service': ComponentsEntertainmentService;
       'header.navigation-menu': HeaderNavigationMenu;
       'helpers.position': HelpersPosition;
       'helpers.social-media': HelpersSocialMedia;
+      'helpers.string-array': HelpersStringArray;
     }
   }
 }

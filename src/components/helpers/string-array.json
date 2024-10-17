@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_helpers_string_arrays",
+  "info": {
+    "displayName": "stringArray",
+    "icon": ""
+  },
+  "options": {},
+  "attributes": {
+    "value": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
