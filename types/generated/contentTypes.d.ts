@@ -819,6 +819,13 @@ export interface ApiAnimatorAnimator extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    profileImg: Attribute.Media &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
     decription: Attribute.Text &
       Attribute.Required &
       Attribute.SetPluginOptions<{
