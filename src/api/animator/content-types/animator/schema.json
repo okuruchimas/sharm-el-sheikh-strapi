@@ -35,19 +35,19 @@
       "required": true
     },
     "profileImg": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images"
       ],
-      "type": "media",
-      "multiple": false,
       "pluginOptions": {
         "i18n": {
           "localized": false
         }
-      },
-      "required": true
+      }
     },
-    "decription": {
+    "description": {
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -75,7 +75,7 @@
       "type": "string",
       "required": true
     },
-    "socialLinkls": {
+    "socialLinks": {
       "type": "component",
       "repeatable": true,
       "pluginOptions": {
@@ -86,7 +86,7 @@
       "component": "helpers.social-media",
       "required": true
     },
-    "skils": {
+    "skills": {
       "displayName": "stringArray",
       "type": "component",
       "repeatable": true,

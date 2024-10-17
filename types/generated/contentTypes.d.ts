@@ -826,7 +826,7 @@ export interface ApiAnimatorAnimator extends Schema.CollectionType {
           localized: false;
         };
       }>;
-    decription: Attribute.Text &
+    description: Attribute.Text &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -848,14 +848,14 @@ export interface ApiAnimatorAnimator extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    socialLinkls: Attribute.Component<'helpers.social-media', true> &
+    socialLinks: Attribute.Component<'helpers.social-media', true> &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
         };
       }>;
-    skils: Attribute.Component<'helpers.string-array', true> &
+    skills: Attribute.Component<'helpers.string-array', true> &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
