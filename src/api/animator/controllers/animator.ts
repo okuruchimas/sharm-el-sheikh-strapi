@@ -1,5 +1,5 @@
 /**
- * company-promotion-card controller
+ * animator controller
  */
 
 import { factories } from "@strapi/strapi";
@@ -9,7 +9,7 @@ import {
 } from "../../../utils/commentHandler";
 
 export default factories.createCoreController(
-  "api::company-promotion-card.company-promotion-card",
+  "api::animator.animator",
   ({ strapi }) => ({
     async addComment(ctx) {
       try {
@@ -23,8 +23,8 @@ export default factories.createCoreController(
         const updatedComment = await handleAddComment(
           strapi,
           slug,
-          "company-promotion-card",
-          "company_promotion_card",
+          "animator",
+          "animator",
           body
         );
 
