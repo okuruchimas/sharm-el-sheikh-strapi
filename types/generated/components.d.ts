@@ -10,7 +10,7 @@ export interface ComponentsBanner extends Schema.Component {
   attributes: {
     title: Attribute.String & Attribute.Required;
     buttonText: Attribute.String;
-    bannerImage: Attribute.Media & Attribute.Required;
+    bannerImage: Attribute.Media;
     buttonLink: Attribute.String;
     subtitle: Attribute.Text;
   };
