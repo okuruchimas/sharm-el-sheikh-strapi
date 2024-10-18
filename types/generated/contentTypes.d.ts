@@ -788,6 +788,44 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiAnimationCompanyAnimationCompany
+  extends Schema.CollectionType {
+  collectionName: 'animation_companies';
+  info: {
+    singularName: 'animation-company';
+    pluralName: 'animation-companies';
+    displayName: 'Animation company';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    key: Attribute.String & Attribute.Required;
+    value: Attribute.String & Attribute.Required;
+    index: Attribute.Integer & Attribute.Required & Attribute.DefaultTo<0>;
+    animators: Attribute.Relation<
+      'api::animation-company.animation-company',
+      'oneToMany',
+      'api::animator.animator'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::animation-company.animation-company',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::animation-company.animation-company',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiAnimatorAnimator extends Schema.CollectionType {
   collectionName: 'animators';
   info: {
@@ -862,13 +900,11 @@ export interface ApiAnimatorAnimator extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    companyName: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
+    animation_company: Attribute.Relation<
+      'api::animator.animator',
+      'manyToOne',
+      'api::animation-company.animation-company'
+    >;
     entertainmentServices: Attribute.Component<
       'components.entertainment-service',
       true
@@ -1886,6 +1922,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::animation-company.animation-company': ApiAnimationCompanyAnimationCompany;
       'api::animator.animator': ApiAnimatorAnimator;
       'api::announcement.announcement': ApiAnnouncementAnnouncement;
       'api::area.area': ApiAreaArea;
