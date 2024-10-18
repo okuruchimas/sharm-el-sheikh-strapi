@@ -123,9 +123,9 @@
     },
     "comments": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::comment.comment",
-      "mappedBy": "animator"
+      "mappedBy": "animators"
     },
     "averageRating": {
       "pluginOptions": {

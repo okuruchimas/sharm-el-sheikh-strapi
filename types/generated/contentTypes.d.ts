@@ -921,7 +921,7 @@ export interface ApiAnimatorAnimator extends Schema.CollectionType {
     >;
     comments: Attribute.Relation<
       'api::animator.animator',
-      'oneToMany',
+      'manyToMany',
       'api::comment.comment'
     >;
     averageRating: Attribute.Float &
@@ -1200,9 +1200,9 @@ export interface ApiCommentComment extends Schema.CollectionType {
       'manyToMany',
       'api::company-promotion-card.company-promotion-card'
     >;
-    animator: Attribute.Relation<
+    animators: Attribute.Relation<
       'api::comment.comment',
-      'manyToOne',
+      'manyToMany',
       'api::animator.animator'
     >;
     createdAt: Attribute.DateTime;
