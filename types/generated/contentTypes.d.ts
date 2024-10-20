@@ -916,7 +916,7 @@ export interface ApiAnimatorAnimator extends Schema.CollectionType {
       }>;
     languages: Attribute.Relation<
       'api::animator.animator',
-      'oneToMany',
+      'manyToMany',
       'api::language.language'
     >;
     comments: Attribute.Relation<
@@ -1800,11 +1800,6 @@ export interface ApiLanguageLanguage extends Schema.CollectionType {
           localized: false;
         };
       }>;
-    animator: Attribute.Relation<
-      'api::language.language',
-      'manyToOne',
-      'api::animator.animator'
-    >;
     value: Attribute.String &
       Attribute.Required &
       Attribute.SetPluginOptions<{
@@ -1820,6 +1815,11 @@ export interface ApiLanguageLanguage extends Schema.CollectionType {
         };
       }> &
       Attribute.DefaultTo<0>;
+    animators: Attribute.Relation<
+      'api::language.language',
+      'manyToMany',
+      'api::animator.animator'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
