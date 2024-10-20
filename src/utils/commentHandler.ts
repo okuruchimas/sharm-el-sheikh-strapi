@@ -60,12 +60,10 @@ export async function handleAddComment(
       .update(localizedEntry.id, { data: { comments: updatedComments } });
   }
 
-  const allComments = await strapi.service("api::comment.comment").find({
-    filters: { [relationField]: entry.id },
-  });
+  const allComments = [...(entry.comments || []), updatedComment];
 
-  const totalComments = allComments.results.length;
-  const totalRating = allComments.results.reduce(
+  const totalComments = allComments.length || 0;
+  const totalRating = allComments.reduce(
     (sum, comment) => sum + comment.rating,
     0
   );
