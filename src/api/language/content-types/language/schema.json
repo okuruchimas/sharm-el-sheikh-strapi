@@ -38,12 +38,6 @@
         }
       }
     },
-    "animator": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::animator.animator",
-      "inversedBy": "languages"
-    },
     "value": {
       "pluginOptions": {
         "i18n": {
@@ -62,6 +56,12 @@
       "type": "integer",
       "default": 0,
       "required": true
+    },
+    "animators": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::animator.animator",
+      "inversedBy": "languages"
     }
   }
 }

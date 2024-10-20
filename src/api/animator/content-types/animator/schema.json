@@ -117,9 +117,9 @@
     },
     "languages": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::language.language",
-      "mappedBy": "animator"
+      "mappedBy": "animators"
     },
     "comments": {
       "type": "relation",
