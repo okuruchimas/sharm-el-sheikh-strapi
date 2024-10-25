@@ -1205,6 +1205,11 @@ export interface ApiCommentComment extends Schema.CollectionType {
       'manyToMany',
       'api::animator.animator'
     >;
+    taxi_drivers: Attribute.Relation<
+      'api::comment.comment',
+      'manyToMany',
+      'api::taxi-driver.taxi-driver'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1820,6 +1825,11 @@ export interface ApiLanguageLanguage extends Schema.CollectionType {
       'manyToMany',
       'api::animator.animator'
     >;
+    taxi_drivers: Attribute.Relation<
+      'api::language.language',
+      'manyToMany',
+      'api::taxi-driver.taxi-driver'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1904,6 +1914,189 @@ export interface ApiServiceService extends Schema.CollectionType {
   };
 }
 
+export interface ApiTaxiDriverTaxiDriver extends Schema.CollectionType {
+  collectionName: 'taxi_drivers';
+  info: {
+    singularName: 'taxi-driver';
+    pluralName: 'taxi-drivers';
+    displayName: 'Taxi Driver';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    slug: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    profileImg: Attribute.Media &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    languages: Attribute.Relation<
+      'api::taxi-driver.taxi-driver',
+      'manyToMany',
+      'api::language.language'
+    >;
+    socialLinkls: Attribute.Component<'helpers.social-media', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    preferences: Attribute.Component<'helpers.string-array', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    schedule: Attribute.Component<'components.work-schedule', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    totalComments: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<0>;
+    averageRating: Attribute.Float &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    comments: Attribute.Relation<
+      'api::taxi-driver.taxi-driver',
+      'manyToMany',
+      'api::comment.comment'
+    >;
+    carClass: Attribute.Enumeration<
+      ['economy', 'standard', 'business', 'vans']
+    > &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<'standard'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::taxi-driver.taxi-driver',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::taxi-driver.taxi-driver',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::taxi-driver.taxi-driver',
+      'oneToMany',
+      'api::taxi-driver.taxi-driver'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiTaxiServiceTaxiService extends Schema.CollectionType {
+  collectionName: 'taxi_services';
+  info: {
+    singularName: 'taxi-service';
+    pluralName: 'taxi-services';
+    displayName: 'Taxi Service';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    key: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    subTitle: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    icon: Attribute.Media &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::taxi-service.taxi-service',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::taxi-service.taxi-service',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::taxi-service.taxi-service',
+      'oneToMany',
+      'api::taxi-service.taxi-service'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1937,6 +2130,8 @@ declare module '@strapi/types' {
       'api::hotspots-page.hotspots-page': ApiHotspotsPageHotspotsPage;
       'api::language.language': ApiLanguageLanguage;
       'api::service.service': ApiServiceService;
+      'api::taxi-driver.taxi-driver': ApiTaxiDriverTaxiDriver;
+      'api::taxi-service.taxi-service': ApiTaxiServiceTaxiService;
     }
   }
 }

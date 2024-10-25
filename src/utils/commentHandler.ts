@@ -60,7 +60,10 @@ export async function handleAddComment(
       .update(localizedEntry.id, { data: { comments: updatedComments } });
   }
 
-  const allComments = [...(entry.comments || []), updatedComment];
+  const allComments = [
+    ...(entry?.comments?.filter((el) => el.email !== email) || []),
+    updatedComment,
+  ];
 
   const totalComments = allComments.length || 0;
   const totalRating = allComments.reduce(

@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_components_work_schedules",
+  "info": {
+    "displayName": "Work Schedule",
+    "icon": "calendar"
+  },
+  "options": {},
+  "attributes": {
+    "dayOfWeek": {
+      "type": "enumeration",
+      "enum": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "required": true
+    },
+    "timeSlots": {
+      "type": "component",
+      "repeatable": true,
+      "component": "helpers.time-slot",
+      "required": true
+    }
+  }
+}

@@ -31,6 +31,30 @@ export interface ComponentsEntertainmentService extends Schema.Component {
   };
 }
 
+export interface ComponentsWorkSchedule extends Schema.Component {
+  collectionName: 'components_components_work_schedules';
+  info: {
+    displayName: 'Work Schedule';
+    icon: 'calendar';
+  };
+  attributes: {
+    dayOfWeek: Attribute.Enumeration<
+      [
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+        'Sunday'
+      ]
+    > &
+      Attribute.Required;
+    timeSlots: Attribute.Component<'helpers.time-slot', true> &
+      Attribute.Required;
+  };
+}
+
 export interface HeaderNavigationMenu extends Schema.Component {
   collectionName: 'components_header_navigation_menus';
   info: {
@@ -79,15 +103,31 @@ export interface HelpersStringArray extends Schema.Component {
   };
 }
 
+export interface HelpersTimeSlot extends Schema.Component {
+  collectionName: 'components_helpers_time_slots';
+  info: {
+    displayName: 'Time Slot';
+    icon: 'clock';
+  };
+  attributes: {
+    startTime: Attribute.Time &
+      Attribute.Required &
+      Attribute.DefaultTo<'00:00'>;
+    endTime: Attribute.Time & Attribute.Required & Attribute.DefaultTo<'00:00'>;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'components.banner': ComponentsBanner;
       'components.entertainment-service': ComponentsEntertainmentService;
+      'components.work-schedule': ComponentsWorkSchedule;
       'header.navigation-menu': HeaderNavigationMenu;
       'helpers.position': HelpersPosition;
       'helpers.social-media': HelpersSocialMedia;
       'helpers.string-array': HelpersStringArray;
+      'helpers.time-slot': HelpersTimeSlot;
     }
   }
 }
