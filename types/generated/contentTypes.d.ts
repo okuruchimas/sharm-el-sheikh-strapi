@@ -1989,7 +1989,8 @@ export interface ApiTaxiDriverTaxiDriver extends Schema.CollectionType {
         i18n: {
           localized: false;
         };
-      }>;
+      }> &
+      Attribute.DefaultTo<0>;
     comments: Attribute.Relation<
       'api::taxi-driver.taxi-driver',
       'manyToMany',
