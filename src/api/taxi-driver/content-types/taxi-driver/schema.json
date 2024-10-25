@@ -35,17 +35,17 @@
       "required": true
     },
     "profileImg": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images"
       ],
-      "type": "media",
-      "multiple": false,
       "pluginOptions": {
         "i18n": {
           "localized": false
         }
-      },
-      "required": true
+      }
     },
     "languages": {
       "type": "relation",
@@ -100,7 +100,8 @@
         }
       },
       "type": "float",
-      "required": true
+      "required": true,
+      "default": 0
     },
     "comments": {
       "type": "relation",
