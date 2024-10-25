@@ -37,6 +37,12 @@
       "relation": "manyToMany",
       "target": "api::animator.animator",
       "inversedBy": "comments"
+    },
+    "taxi_drivers": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::taxi-driver.taxi-driver",
+      "mappedBy": "comments"
     }
   }
 }

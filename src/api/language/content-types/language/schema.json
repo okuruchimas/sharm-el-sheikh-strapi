@@ -62,6 +62,12 @@
       "relation": "manyToMany",
       "target": "api::animator.animator",
       "inversedBy": "languages"
+    },
+    "taxi_drivers": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::taxi-driver.taxi-driver",
+      "mappedBy": "languages"
     }
   }
 }
