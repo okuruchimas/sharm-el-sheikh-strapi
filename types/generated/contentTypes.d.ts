@@ -1091,6 +1091,79 @@ export interface ApiAreaArea extends Schema.CollectionType {
   };
 }
 
+export interface ApiCarClassCarClass extends Schema.CollectionType {
+  collectionName: 'car_classes';
+  info: {
+    singularName: 'car-class';
+    pluralName: 'car-classes';
+    displayName: 'Car Class';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    key: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    value: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    icon: Attribute.Media &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    circleIcon: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    taxi_drivers: Attribute.Relation<
+      'api::car-class.car-class',
+      'oneToMany',
+      'api::taxi-driver.taxi-driver'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::car-class.car-class',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::car-class.car-class',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::car-class.car-class',
+      'oneToMany',
+      'api::car-class.car-class'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiCategoryCategory extends Schema.CollectionType {
   collectionName: 'categories';
   info: {
@@ -1996,16 +2069,32 @@ export interface ApiTaxiDriverTaxiDriver extends Schema.CollectionType {
       'manyToMany',
       'api::comment.comment'
     >;
-    carClass: Attribute.Enumeration<
-      ['economy', 'standard', 'business', 'vans']
-    > &
+    car_class: Attribute.Relation<
+      'api::taxi-driver.taxi-driver',
+      'manyToOne',
+      'api::car-class.car-class'
+    >;
+    carName: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    carModel: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    passengersNum: Attribute.Integer &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
         };
-      }> &
-      Attribute.DefaultTo<'standard'>;
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2120,6 +2209,7 @@ declare module '@strapi/types' {
       'api::animator.animator': ApiAnimatorAnimator;
       'api::announcement.announcement': ApiAnnouncementAnnouncement;
       'api::area.area': ApiAreaArea;
+      'api::car-class.car-class': ApiCarClassCarClass;
       'api::category.category': ApiCategoryCategory;
       'api::comment.comment': ApiCommentComment;
       'api::company-promotion-card.company-promotion-card': ApiCompanyPromotionCardCompanyPromotionCard;
