@@ -109,21 +109,38 @@
       "target": "api::comment.comment",
       "inversedBy": "taxi_drivers"
     },
-    "carClass": {
+    "car_class": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::car-class.car-class",
+      "inversedBy": "taxi_drivers"
+    },
+    "carName": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true
+    },
+    "carModel": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true
+    },
+    "passengersNum": {
       "pluginOptions": {
         "i18n": {
           "localized": false
         }
       },
-      "type": "enumeration",
-      "enum": [
-        "economy",
-        "standard",
-        "business",
-        "vans"
-      ],
-      "required": true,
-      "default": "standard"
+      "type": "integer",
+      "required": true
     }
   }
 }
