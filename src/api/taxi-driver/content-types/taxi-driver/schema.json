@@ -58,10 +58,11 @@
       "repeatable": true,
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
         }
       },
-      "component": "helpers.social-media"
+      "component": "helpers.social-media",
+      "required": true
     },
     "preferences": {
       "type": "component",

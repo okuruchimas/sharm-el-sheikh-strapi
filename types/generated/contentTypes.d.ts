@@ -2031,9 +2031,10 @@ export interface ApiTaxiDriverTaxiDriver extends Schema.CollectionType {
       'api::language.language'
     >;
     socialLinks: Attribute.Component<'helpers.social-media', true> &
+      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }>;
     preferences: Attribute.Component<'helpers.string-array', true> &
