@@ -2030,7 +2030,7 @@ export interface ApiTaxiDriverTaxiDriver extends Schema.CollectionType {
       'manyToMany',
       'api::language.language'
     >;
-    socialLinkls: Attribute.Component<'helpers.social-media', true> &
+    socialLinks: Attribute.Component<'helpers.social-media', true> &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;

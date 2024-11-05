@@ -53,7 +53,7 @@
       "target": "api::language.language",
       "inversedBy": "taxi_drivers"
     },
-    "socialLinkls": {
+    "socialLinks": {
       "type": "component",
       "repeatable": true,
       "pluginOptions": {
