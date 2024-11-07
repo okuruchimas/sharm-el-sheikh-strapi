@@ -2104,6 +2104,11 @@ export interface ApiTaxiDriverTaxiDriver extends Schema.CollectionType {
         };
       }> &
       Attribute.DefaultTo<false>;
+    taxi_services: Attribute.Relation<
+      'api::taxi-driver.taxi-driver',
+      'manyToMany',
+      'api::taxi-service.taxi-service'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2172,6 +2177,11 @@ export interface ApiTaxiServiceTaxiService extends Schema.CollectionType {
           localized: false;
         };
       }>;
+    taxi_drivers: Attribute.Relation<
+      'api::taxi-service.taxi-service',
+      'manyToMany',
+      'api::taxi-driver.taxi-driver'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

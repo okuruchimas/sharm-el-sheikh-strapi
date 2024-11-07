@@ -54,6 +54,12 @@
         }
       },
       "required": true
+    },
+    "taxi_drivers": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::taxi-driver.taxi-driver",
+      "mappedBy": "taxi_services"
     }
   }
 }

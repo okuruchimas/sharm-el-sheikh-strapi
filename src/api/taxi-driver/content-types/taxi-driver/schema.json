@@ -152,6 +152,12 @@
       "type": "boolean",
       "default": false,
       "required": true
+    },
+    "taxi_services": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::taxi-service.taxi-service",
+      "inversedBy": "taxi_drivers"
     }
   }
 }
