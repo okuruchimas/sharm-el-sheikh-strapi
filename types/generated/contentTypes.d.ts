@@ -1346,6 +1346,13 @@ export interface ApiClubClub extends Schema.CollectionType {
         };
       }> &
       Attribute.DefaultTo<0>;
+    image: Attribute.Media &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
