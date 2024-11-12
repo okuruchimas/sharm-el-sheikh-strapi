@@ -117,6 +117,29 @@ export interface HelpersTimeSlot extends Schema.Component {
   };
 }
 
+export interface HelpersWeekDay extends Schema.Component {
+  collectionName: 'components_helpers_week_days';
+  info: {
+    displayName: 'Week Day';
+    icon: 'calendar';
+    description: '';
+  };
+  attributes: {
+    day: Attribute.Enumeration<
+      [
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+        'Sunday'
+      ]
+    > &
+      Attribute.Required;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
@@ -128,6 +151,7 @@ declare module '@strapi/types' {
       'helpers.social-media': HelpersSocialMedia;
       'helpers.string-array': HelpersStringArray;
       'helpers.time-slot': HelpersTimeSlot;
+      'helpers.week-day': HelpersWeekDay;
     }
   }
 }
