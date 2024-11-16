@@ -93,6 +93,17 @@
       "relation": "manyToMany",
       "target": "api::comment.comment",
       "inversedBy": "photographers"
+    },
+    "socialLinks": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "component": "helpers.social-media",
+      "required": true
     }
   }
 }

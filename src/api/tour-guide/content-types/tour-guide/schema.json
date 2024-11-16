@@ -4,7 +4,8 @@
   "info": {
     "singularName": "tour-guide",
     "pluralName": "tour-guides",
-    "displayName": "Tour Guide"
+    "displayName": "Tour Guide",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -34,17 +35,17 @@
       "required": true
     },
     "profileImg": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images"
       ],
-      "type": "media",
-      "multiple": false,
       "pluginOptions": {
         "i18n": {
           "localized": false
         }
-      },
-      "required": true
+      }
     },
     "languages": {
       "type": "relation",
@@ -86,6 +87,17 @@
       "relation": "manyToMany",
       "target": "api::comment.comment",
       "inversedBy": "tour_guides"
+    },
+    "socialLinks": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "component": "helpers.social-media",
+      "required": true
     }
   }
 }
