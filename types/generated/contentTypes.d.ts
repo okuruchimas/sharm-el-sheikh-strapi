@@ -2163,6 +2163,13 @@ export interface ApiPhotographerPhotographer extends Schema.CollectionType {
       'manyToMany',
       'api::comment.comment'
     >;
+    socialLinks: Attribute.Component<'helpers.social-media', true> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2537,6 +2544,7 @@ export interface ApiTourGuideTourGuide extends Schema.CollectionType {
     singularName: 'tour-guide';
     pluralName: 'tour-guides';
     displayName: 'Tour Guide';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -2601,6 +2609,13 @@ export interface ApiTourGuideTourGuide extends Schema.CollectionType {
       'manyToMany',
       'api::comment.comment'
     >;
+    socialLinks: Attribute.Component<'helpers.social-media', true> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
