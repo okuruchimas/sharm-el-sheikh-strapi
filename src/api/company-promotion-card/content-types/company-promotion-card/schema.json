@@ -98,11 +98,6 @@
       },
       "type": "string"
     },
-    "filters": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::filters.filters"
-    },
     "averageRating": {
       "pluginOptions": {
         "i18n": {

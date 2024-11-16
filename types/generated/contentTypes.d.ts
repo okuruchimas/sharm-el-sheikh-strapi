@@ -1407,6 +1407,16 @@ export interface ApiCommentComment extends Schema.CollectionType {
       'manyToMany',
       'api::taxi-driver.taxi-driver'
     >;
+    tour_guides: Attribute.Relation<
+      'api::comment.comment',
+      'manyToMany',
+      'api::tour-guide.tour-guide'
+    >;
+    photographers: Attribute.Relation<
+      'api::comment.comment',
+      'manyToMany',
+      'api::photographer.photographer'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1499,11 +1509,6 @@ export interface ApiCompanyPromotionCardCompanyPromotionCard
           localized: true;
         };
       }>;
-    filters: Attribute.Relation<
-      'api::company-promotion-card.company-promotion-card',
-      'oneToMany',
-      'api::filters.filters'
-    >;
     averageRating: Attribute.Float &
       Attribute.Required &
       Attribute.SetPluginOptions<{
@@ -1675,37 +1680,6 @@ export interface ApiEventCardEventCard extends Schema.CollectionType {
   };
 }
 
-export interface ApiFiltersFilters extends Schema.CollectionType {
-  collectionName: 'filteres';
-  info: {
-    singularName: 'filters';
-    pluralName: 'filteres';
-    displayName: 'Filters';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    text: Attribute.String;
-    key: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::filters.filters',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::filters.filters',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiFooterFooter extends Schema.SingleType {
   collectionName: 'footers';
   info: {
@@ -1870,11 +1844,6 @@ export interface ApiHomeHome extends Schema.SingleType {
           localized: true;
         };
       }>;
-    filters: Attribute.Relation<
-      'api::home.home',
-      'oneToMany',
-      'api::filters.filters'
-    >;
     mapTitle: Attribute.String &
       Attribute.Required &
       Attribute.SetPluginOptions<{
@@ -2027,6 +1996,16 @@ export interface ApiLanguageLanguage extends Schema.CollectionType {
       'manyToMany',
       'api::taxi-driver.taxi-driver'
     >;
+    tour_guides: Attribute.Relation<
+      'api::language.language',
+      'manyToMany',
+      'api::tour-guide.tour-guide'
+    >;
+    photographers: Attribute.Relation<
+      'api::language.language',
+      'manyToMany',
+      'api::photographer.photographer'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2046,6 +2025,223 @@ export interface ApiLanguageLanguage extends Schema.CollectionType {
       'api::language.language',
       'oneToMany',
       'api::language.language'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiLocationLocation extends Schema.CollectionType {
+  collectionName: 'locations';
+  info: {
+    singularName: 'location';
+    pluralName: 'locations';
+    displayName: 'Location';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    key: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    value: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    photographers: Attribute.Relation<
+      'api::location.location',
+      'manyToMany',
+      'api::photographer.photographer'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::location.location',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::location.location',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::location.location',
+      'oneToMany',
+      'api::location.location'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiPhotographerPhotographer extends Schema.CollectionType {
+  collectionName: 'photographers';
+  info: {
+    singularName: 'photographer';
+    pluralName: 'photographers';
+    displayName: 'Photographer';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    slug: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    profileImg: Attribute.Media &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    languages: Attribute.Relation<
+      'api::photographer.photographer',
+      'manyToMany',
+      'api::language.language'
+    >;
+    totalComments: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<0>;
+    averageRating: Attribute.Float &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<0>;
+    photography_styles: Attribute.Relation<
+      'api::photographer.photographer',
+      'manyToMany',
+      'api::photography-style.photography-style'
+    >;
+    locations: Attribute.Relation<
+      'api::photographer.photographer',
+      'manyToMany',
+      'api::location.location'
+    >;
+    comments: Attribute.Relation<
+      'api::photographer.photographer',
+      'manyToMany',
+      'api::comment.comment'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::photographer.photographer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::photographer.photographer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::photographer.photographer',
+      'oneToMany',
+      'api::photographer.photographer'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiPhotographyStylePhotographyStyle
+  extends Schema.CollectionType {
+  collectionName: 'photography_styles';
+  info: {
+    singularName: 'photography-style';
+    pluralName: 'photography-styles';
+    displayName: 'Photography Style';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    key: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    value: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    photographers: Attribute.Relation<
+      'api::photography-style.photography-style',
+      'manyToMany',
+      'api::photographer.photographer'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::photography-style.photography-style',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::photography-style.photography-style',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::photography-style.photography-style',
+      'oneToMany',
+      'api::photography-style.photography-style'
     >;
     locale: Attribute.String;
   };
@@ -2335,6 +2531,100 @@ export interface ApiTaxiServiceTaxiService extends Schema.CollectionType {
   };
 }
 
+export interface ApiTourGuideTourGuide extends Schema.CollectionType {
+  collectionName: 'tour_guides';
+  info: {
+    singularName: 'tour-guide';
+    pluralName: 'tour-guides';
+    displayName: 'Tour Guide';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    slug: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    profileImg: Attribute.Media &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    languages: Attribute.Relation<
+      'api::tour-guide.tour-guide',
+      'manyToMany',
+      'api::language.language'
+    >;
+    totalComments: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<0>;
+    averageRating: Attribute.Float &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<0>;
+    tours: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    comments: Attribute.Relation<
+      'api::tour-guide.tour-guide',
+      'manyToMany',
+      'api::comment.comment'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::tour-guide.tour-guide',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::tour-guide.tour-guide',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::tour-guide.tour-guide',
+      'oneToMany',
+      'api::tour-guide.tour-guide'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -2363,15 +2653,18 @@ declare module '@strapi/types' {
       'api::comment.comment': ApiCommentComment;
       'api::company-promotion-card.company-promotion-card': ApiCompanyPromotionCardCompanyPromotionCard;
       'api::event-card.event-card': ApiEventCardEventCard;
-      'api::filters.filters': ApiFiltersFilters;
       'api::footer.footer': ApiFooterFooter;
       'api::header.header': ApiHeaderHeader;
       'api::home.home': ApiHomeHome;
       'api::hotspots-page.hotspots-page': ApiHotspotsPageHotspotsPage;
       'api::language.language': ApiLanguageLanguage;
+      'api::location.location': ApiLocationLocation;
+      'api::photographer.photographer': ApiPhotographerPhotographer;
+      'api::photography-style.photography-style': ApiPhotographyStylePhotographyStyle;
       'api::service.service': ApiServiceService;
       'api::taxi-driver.taxi-driver': ApiTaxiDriverTaxiDriver;
       'api::taxi-service.taxi-service': ApiTaxiServiceTaxiService;
+      'api::tour-guide.tour-guide': ApiTourGuideTourGuide;
     }
   }
 }

@@ -1,0 +1,98 @@
+{
+  "kind": "collectionType",
+  "collectionName": "photographers",
+  "info": {
+    "singularName": "photographer",
+    "pluralName": "photographers",
+    "displayName": "Photographer",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "slug": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "string",
+      "required": true
+    },
+    "name": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true
+    },
+    "profileImg": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "languages": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::language.language",
+      "inversedBy": "photographers"
+    },
+    "totalComments": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "integer",
+      "default": 0,
+      "required": true
+    },
+    "averageRating": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "float",
+      "required": true,
+      "default": 0
+    },
+    "photography_styles": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::photography-style.photography-style",
+      "inversedBy": "photographers"
+    },
+    "locations": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::location.location",
+      "inversedBy": "photographers"
+    },
+    "comments": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::comment.comment",
+      "inversedBy": "photographers"
+    }
+  }
+}

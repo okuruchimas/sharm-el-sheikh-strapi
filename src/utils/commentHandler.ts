@@ -29,7 +29,7 @@ export async function handleAddComment(
   const entry = entryData.results[0];
   const localizedEntries = [entry, ...entry.localizations];
 
-  const existingComment = entry.comments.find(
+  const existingComment = entry?.comments?.find(
     (comment) => comment.email === email
   );
 
