@@ -68,6 +68,18 @@
       "relation": "manyToMany",
       "target": "api::taxi-driver.taxi-driver",
       "mappedBy": "languages"
+    },
+    "tour_guides": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tour-guide.tour-guide",
+      "mappedBy": "languages"
+    },
+    "photographers": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::photographer.photographer",
+      "mappedBy": "languages"
     }
   }
 }

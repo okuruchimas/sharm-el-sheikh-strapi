@@ -79,11 +79,6 @@
         }
       }
     },
-    "filters": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::filters.filters"
-    },
     "mapTitle": {
       "pluginOptions": {
         "i18n": {
