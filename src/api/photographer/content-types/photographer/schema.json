@@ -104,6 +104,14 @@
       },
       "component": "helpers.social-media",
       "required": true
+    },
+    "description": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "text"
     }
   }
 }
