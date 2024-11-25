@@ -2089,6 +2089,274 @@ export interface ApiLocationLocation extends Schema.CollectionType {
   };
 }
 
+export interface ApiMedicationMedication extends Schema.CollectionType {
+  collectionName: 'medications';
+  info: {
+    singularName: 'medication';
+    pluralName: 'medications';
+    displayName: 'Medication';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    price: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    image: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    analogs: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    medication_categories: Attribute.Relation<
+      'api::medication.medication',
+      'manyToMany',
+      'api::medication-category.medication-category'
+    >;
+    location: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    indications: Attribute.Component<'helpers.string-array', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    dosage: Attribute.Component<'helpers.string-array', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    contraindications: Attribute.Component<'helpers.string-array', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    sideEffects: Attribute.Component<'helpers.string-array', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    storage: Attribute.Component<'helpers.string-array', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    warnings: Attribute.Component<'helpers.string-array', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::medication.medication',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::medication.medication',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::medication.medication',
+      'oneToMany',
+      'api::medication.medication'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiMedicationCategoryMedicationCategory
+  extends Schema.CollectionType {
+  collectionName: 'medication_categories';
+  info: {
+    singularName: 'medication-category';
+    pluralName: 'medication-categories';
+    displayName: 'Medication Category';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    key: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    value: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    medications: Attribute.Relation<
+      'api::medication-category.medication-category',
+      'manyToMany',
+      'api::medication.medication'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::medication-category.medication-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::medication-category.medication-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::medication-category.medication-category',
+      'oneToMany',
+      'api::medication-category.medication-category'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiPharmaciesPagePharmaciesPage extends Schema.SingleType {
+  collectionName: 'pharmacies_pages';
+  info: {
+    singularName: 'pharmacies-page';
+    pluralName: 'pharmacies-pages';
+    displayName: 'Pharmacies Page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    mapTitle: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    medicationsTitle: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    supportServicesTitle: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    emergencyDescription: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    assistanceDescription: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    embassiesDescription: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    categories: Attribute.Relation<
+      'api::pharmacies-page.pharmacies-page',
+      'oneToMany',
+      'api::category.category'
+    >;
+    filterTitle: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::pharmacies-page.pharmacies-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::pharmacies-page.pharmacies-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::pharmacies-page.pharmacies-page',
+      'oneToMany',
+      'api::pharmacies-page.pharmacies-page'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiPhotographerPhotographer extends Schema.CollectionType {
   collectionName: 'photographers';
   info: {
@@ -2320,6 +2588,89 @@ export interface ApiServiceService extends Schema.CollectionType {
       'api::service.service',
       'oneToMany',
       'api::service.service'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiSupportServiceSupportService extends Schema.CollectionType {
+  collectionName: 'support_services';
+  info: {
+    singularName: 'support-service';
+    pluralName: 'support-services';
+    displayName: 'Support Service';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    phoneNumber: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    location: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    mapLink: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    image: Attribute.Media &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    category: Attribute.Enumeration<
+      ['emergency-services', 'assistance-services', 'embassies']
+    > &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::support-service.support-service',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::support-service.support-service',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::support-service.support-service',
+      'oneToMany',
+      'api::support-service.support-service'
     >;
     locale: Attribute.String;
   };
@@ -2686,9 +3037,13 @@ declare module '@strapi/types' {
       'api::hotspots-page.hotspots-page': ApiHotspotsPageHotspotsPage;
       'api::language.language': ApiLanguageLanguage;
       'api::location.location': ApiLocationLocation;
+      'api::medication.medication': ApiMedicationMedication;
+      'api::medication-category.medication-category': ApiMedicationCategoryMedicationCategory;
+      'api::pharmacies-page.pharmacies-page': ApiPharmaciesPagePharmaciesPage;
       'api::photographer.photographer': ApiPhotographerPhotographer;
       'api::photography-style.photography-style': ApiPhotographyStylePhotographyStyle;
       'api::service.service': ApiServiceService;
+      'api::support-service.support-service': ApiSupportServiceSupportService;
       'api::taxi-driver.taxi-driver': ApiTaxiDriverTaxiDriver;
       'api::taxi-service.taxi-service': ApiTaxiServiceTaxiService;
       'api::tour-guide.tour-guide': ApiTourGuideTourGuide;
