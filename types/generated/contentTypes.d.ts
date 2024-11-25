@@ -2095,6 +2095,7 @@ export interface ApiMedicationMedication extends Schema.CollectionType {
     singularName: 'medication';
     pluralName: 'medications';
     displayName: 'Medication';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -2177,6 +2178,13 @@ export interface ApiMedicationMedication extends Schema.CollectionType {
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
+        };
+      }>;
+    slug: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
         };
       }>;
     createdAt: Attribute.DateTime;

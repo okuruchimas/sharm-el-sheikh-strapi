@@ -4,7 +4,8 @@
   "info": {
     "singularName": "medication",
     "pluralName": "medications",
-    "displayName": "Medication"
+    "displayName": "Medication",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -34,11 +35,12 @@
       "required": true
     },
     "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
       ],
-      "type": "media",
-      "multiple": false,
       "pluginOptions": {
         "i18n": {
           "localized": false
@@ -127,6 +129,15 @@
         }
       },
       "component": "helpers.string-array"
+    },
+    "slug": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "string",
+      "required": true
     }
   }
 }
