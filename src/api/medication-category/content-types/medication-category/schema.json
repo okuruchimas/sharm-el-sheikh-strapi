@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "medication_categories",
+  "info": {
+    "singularName": "medication-category",
+    "pluralName": "medication-categories",
+    "displayName": "Medication Category"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "key": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "string",
+      "required": true
+    },
+    "value": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true
+    },
+    "medications": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::medication.medication",
+      "mappedBy": "medication_categories"
+    }
+  }
+}
