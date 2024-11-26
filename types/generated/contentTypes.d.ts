@@ -1916,6 +1916,12 @@ export interface ApiHotspotsPageHotspotsPage extends Schema.SingleType {
           localized: true;
         };
       }>;
+    mapTitle: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
