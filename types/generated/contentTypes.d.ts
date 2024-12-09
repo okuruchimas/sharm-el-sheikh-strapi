@@ -1634,13 +1634,6 @@ export interface ApiEventCardEventCard extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    url: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
     image: Attribute.Media &
       Attribute.Required &
       Attribute.SetPluginOptions<{
@@ -1656,6 +1649,24 @@ export interface ApiEventCardEventCard extends Schema.CollectionType {
         };
       }> &
       Attribute.DefaultTo<0>;
+    description: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    mapUrl: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    socialLinks: Attribute.Component<'helpers.social-media', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
