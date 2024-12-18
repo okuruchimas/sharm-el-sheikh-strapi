@@ -65,6 +65,7 @@ export interface HeaderNavigationMenu extends Schema.Component {
   attributes: {
     Text: Attribute.String;
     Link: Attribute.String;
+    image: Attribute.Media & Attribute.Required;
   };
 }
 
