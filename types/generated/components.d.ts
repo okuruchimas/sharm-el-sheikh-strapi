@@ -31,6 +31,19 @@ export interface ComponentsEntertainmentService extends Schema.Component {
   };
 }
 
+export interface ComponentsHomeNavMenu extends Schema.Component {
+  collectionName: 'components_components_home_nav_menus';
+  info: {
+    displayName: 'Home Nav Menu';
+    icon: 'alien';
+  };
+  attributes: {
+    text: Attribute.String & Attribute.Required;
+    link: Attribute.String & Attribute.Required;
+    image: Attribute.Media & Attribute.Required;
+  };
+}
+
 export interface ComponentsWorkSchedule extends Schema.Component {
   collectionName: 'components_components_work_schedules';
   info: {
@@ -65,7 +78,6 @@ export interface HeaderNavigationMenu extends Schema.Component {
   attributes: {
     Text: Attribute.String;
     Link: Attribute.String;
-    image: Attribute.Media & Attribute.Required;
   };
 }
 
@@ -146,6 +158,7 @@ declare module '@strapi/types' {
     export interface Components {
       'components.banner': ComponentsBanner;
       'components.entertainment-service': ComponentsEntertainmentService;
+      'components.home-nav-menu': ComponentsHomeNavMenu;
       'components.work-schedule': ComponentsWorkSchedule;
       'header.navigation-menu': HeaderNavigationMenu;
       'helpers.position': HelpersPosition;

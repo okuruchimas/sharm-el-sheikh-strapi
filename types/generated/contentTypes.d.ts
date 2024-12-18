@@ -1867,6 +1867,12 @@ export interface ApiHomeHome extends Schema.SingleType {
       'oneToMany',
       'api::announcement.announcement'
     >;
+    homeNavMenu: Attribute.Component<'components.home-nav-menu', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

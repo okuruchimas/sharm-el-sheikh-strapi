@@ -92,6 +92,17 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::announcement.announcement"
+    },
+    "homeNavMenu": {
+      "displayName": "Home Nav Menu",
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "components.home-nav-menu"
     }
   }
 }

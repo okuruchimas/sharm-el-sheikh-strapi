@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_components_home_nav_menus",
+  "info": {
+    "displayName": "Home Nav Menu",
+    "icon": "alien"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string",
+      "required": true
+    },
+    "link": {
+      "type": "string",
+      "required": true
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}
