@@ -1488,7 +1488,7 @@ export interface ApiCompanyCompany extends Schema.CollectionType {
           localized: false;
         };
       }>;
-    position: Attribute.Component<'helpers.position', true> &
+    position: Attribute.Component<'helpers.position'> &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
