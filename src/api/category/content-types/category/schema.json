@@ -74,6 +74,12 @@
       },
       "required": true,
       "type": "integer"
+    },
+    "companies": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::company.company",
+      "mappedBy": "categories"
     }
   }
 }

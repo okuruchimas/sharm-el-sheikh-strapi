@@ -55,6 +55,12 @@
       "relation": "manyToMany",
       "target": "api::photographer.photographer",
       "mappedBy": "comments"
+    },
+    "companies": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::company.company",
+      "mappedBy": "comments"
     }
   }
 }

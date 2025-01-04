@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_components_company_schedules",
+  "info": {
+    "displayName": "Company Schedule",
+    "icon": "bulletList",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "days": {
+      "type": "component",
+      "repeatable": true,
+      "component": "helpers.week-day",
+      "required": true
+    },
+    "workTime": {
+      "type": "component",
+      "repeatable": false,
+      "component": "helpers.time-slot",
+      "required": true
+    }
+  }
+}

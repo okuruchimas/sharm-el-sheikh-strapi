@@ -1075,6 +1075,11 @@ export interface ApiAreaArea extends Schema.CollectionType {
           localized: false;
         };
       }>;
+    companies: Attribute.Relation<
+      'api::area.area',
+      'oneToMany',
+      'api::company.company'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1221,6 +1226,11 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
           localized: false;
         };
       }>;
+    companies: Attribute.Relation<
+      'api::category.category',
+      'manyToMany',
+      'api::company.company'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1417,6 +1427,11 @@ export interface ApiCommentComment extends Schema.CollectionType {
       'manyToMany',
       'api::photographer.photographer'
     >;
+    companies: Attribute.Relation<
+      'api::comment.comment',
+      'manyToMany',
+      'api::company.company'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1432,6 +1447,164 @@ export interface ApiCommentComment extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
+  };
+}
+
+export interface ApiCompanyCompany extends Schema.CollectionType {
+  collectionName: 'companies';
+  info: {
+    singularName: 'company';
+    pluralName: 'companies';
+    displayName: 'Company';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    slug: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    images: Attribute.Media &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    position: Attribute.Component<'helpers.position', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    description: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    averageRating: Attribute.Float &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.SetMinMax<
+        {
+          min: 0;
+          max: 5;
+        },
+        number
+      > &
+      Attribute.DefaultTo<0>;
+    totalComments: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    location: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    services: Attribute.Relation<
+      'api::company.company',
+      'manyToMany',
+      'api::service.service'
+    >;
+    comments: Attribute.Relation<
+      'api::company.company',
+      'manyToMany',
+      'api::comment.comment'
+    >;
+    area: Attribute.Relation<
+      'api::company.company',
+      'manyToOne',
+      'api::area.area'
+    >;
+    categories: Attribute.Relation<
+      'api::company.company',
+      'manyToMany',
+      'api::category.category'
+    >;
+    socialLinks: Attribute.Component<'helpers.social-media', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    discount: Attribute.Component<'components.discount'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    schedule: Attribute.Component<'components.company-schedule', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    phoneNumber: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    food: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    pageData: Attribute.Component<'components.company-page-fields'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::company.company',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::company.company',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::company.company',
+      'oneToMany',
+      'api::company.company'
+    >;
+    locale: Attribute.String;
   };
 }
 
@@ -2600,6 +2773,11 @@ export interface ApiServiceService extends Schema.CollectionType {
       'manyToMany',
       'api::club.club'
     >;
+    companies: Attribute.Relation<
+      'api::service.service',
+      'manyToMany',
+      'api::company.company'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -3060,6 +3238,7 @@ declare module '@strapi/types' {
       'api::category.category': ApiCategoryCategory;
       'api::club.club': ApiClubClub;
       'api::comment.comment': ApiCommentComment;
+      'api::company.company': ApiCompanyCompany;
       'api::company-promotion-card.company-promotion-card': ApiCompanyPromotionCardCompanyPromotionCard;
       'api::event-card.event-card': ApiEventCardEventCard;
       'api::footer.footer': ApiFooterFooter;

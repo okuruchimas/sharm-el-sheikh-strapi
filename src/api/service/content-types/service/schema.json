@@ -49,6 +49,12 @@
       "relation": "manyToMany",
       "target": "api::club.club",
       "mappedBy": "services"
+    },
+    "companies": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::company.company",
+      "mappedBy": "services"
     }
   }
 }

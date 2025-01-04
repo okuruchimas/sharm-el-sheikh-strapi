@@ -42,6 +42,12 @@
       },
       "required": true,
       "type": "integer"
+    },
+    "companies": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::company.company",
+      "mappedBy": "area"
     }
   }
 }

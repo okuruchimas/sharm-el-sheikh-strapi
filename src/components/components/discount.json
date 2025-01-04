@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_components_discounts",
+  "info": {
+    "displayName": "Discount",
+    "icon": "gift"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "terms": {
+      "type": "text",
+      "required": true
+    }
+  }
+}
