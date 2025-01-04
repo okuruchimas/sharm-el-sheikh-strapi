@@ -16,6 +16,45 @@ export interface ComponentsBanner extends Schema.Component {
   };
 }
 
+export interface ComponentsCompanyPageFields extends Schema.Component {
+  collectionName: 'components_components_company_page_fields';
+  info: {
+    displayName: 'Company Page Fields';
+    icon: 'file';
+  };
+  attributes: {
+    youTubeVideoId: Attribute.String;
+    contactLink: Attribute.String;
+    contactText: Attribute.String;
+  };
+}
+
+export interface ComponentsCompanySchedule extends Schema.Component {
+  collectionName: 'components_components_company_schedules';
+  info: {
+    displayName: 'Company Schedule';
+    icon: 'bulletList';
+    description: '';
+  };
+  attributes: {
+    days: Attribute.Component<'helpers.week-day', true> & Attribute.Required;
+    workTime: Attribute.Component<'helpers.time-slot'> & Attribute.Required;
+  };
+}
+
+export interface ComponentsDiscount extends Schema.Component {
+  collectionName: 'components_components_discounts';
+  info: {
+    displayName: 'Discount';
+    icon: 'gift';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    image: Attribute.Media;
+    terms: Attribute.Text & Attribute.Required;
+  };
+}
+
 export interface ComponentsEntertainmentService extends Schema.Component {
   collectionName: 'components_components_entertainment_services';
   info: {
@@ -157,6 +196,9 @@ declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'components.banner': ComponentsBanner;
+      'components.company-page-fields': ComponentsCompanyPageFields;
+      'components.company-schedule': ComponentsCompanySchedule;
+      'components.discount': ComponentsDiscount;
       'components.entertainment-service': ComponentsEntertainmentService;
       'components.home-nav-menu': ComponentsHomeNavMenu;
       'components.work-schedule': ComponentsWorkSchedule;

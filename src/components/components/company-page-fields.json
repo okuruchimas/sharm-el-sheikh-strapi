@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_components_company_page_fields",
+  "info": {
+    "displayName": "Company Page Fields",
+    "icon": "file"
+  },
+  "options": {},
+  "attributes": {
+    "youTubeVideoId": {
+      "type": "string"
+    },
+    "contactLink": {
+      "type": "string"
+    },
+    "contactText": {
+      "type": "string"
+    }
+  }
+}
