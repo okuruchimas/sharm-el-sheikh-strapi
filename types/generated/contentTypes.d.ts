@@ -1074,7 +1074,8 @@ export interface ApiAreaArea extends Schema.CollectionType {
         i18n: {
           localized: false;
         };
-      }>;
+      }> &
+      Attribute.DefaultTo<0>;
     companies: Attribute.Relation<
       'api::area.area',
       'oneToMany',
@@ -1225,7 +1226,8 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
         i18n: {
           localized: false;
         };
-      }>;
+      }> &
+      Attribute.DefaultTo<0>;
     companies: Attribute.Relation<
       'api::category.category',
       'manyToMany',
@@ -1521,7 +1523,8 @@ export interface ApiCompanyCompany extends Schema.CollectionType {
         i18n: {
           localized: false;
         };
-      }>;
+      }> &
+      Attribute.DefaultTo<0>;
     location: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
