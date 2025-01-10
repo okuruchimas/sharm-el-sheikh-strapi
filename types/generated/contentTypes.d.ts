@@ -1215,11 +1215,6 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
           localized: false;
         };
       }>;
-    company_promotion_cards: Attribute.Relation<
-      'api::category.category',
-      'manyToMany',
-      'api::company-promotion-card.company-promotion-card'
-    >;
     index: Attribute.Integer &
       Attribute.Required &
       Attribute.SetPluginOptions<{
@@ -1257,130 +1252,6 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
   };
 }
 
-export interface ApiClubClub extends Schema.CollectionType {
-  collectionName: 'clubs';
-  info: {
-    singularName: 'club';
-    pluralName: 'clubs';
-    displayName: 'Club';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    slug: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    clubName: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    workingDays: Attribute.Component<'helpers.week-day', true> &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    location: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    phoneNumber: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    socialLinks: Attribute.Component<'helpers.social-media', true> &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    about: Attribute.Text &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    services: Attribute.Relation<
-      'api::club.club',
-      'manyToMany',
-      'api::service.service'
-    >;
-    food: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    workingTime: Attribute.Component<'helpers.time-slot'> &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    averageRating: Attribute.Float &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }> &
-      Attribute.DefaultTo<0>;
-    totalComments: Attribute.Integer &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }> &
-      Attribute.DefaultTo<0>;
-    image: Attribute.Media &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::club.club', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::club.club', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    localizations: Attribute.Relation<
-      'api::club.club',
-      'oneToMany',
-      'api::club.club'
-    >;
-    locale: Attribute.String;
-  };
-}
-
 export interface ApiCommentComment extends Schema.CollectionType {
   collectionName: 'comments';
   info: {
@@ -1404,11 +1275,6 @@ export interface ApiCommentComment extends Schema.CollectionType {
         number
       >;
     email: Attribute.String & Attribute.Required;
-    company_promotion_cards: Attribute.Relation<
-      'api::comment.comment',
-      'manyToMany',
-      'api::company-promotion-card.company-promotion-card'
-    >;
     animators: Attribute.Relation<
       'api::comment.comment',
       'manyToMany',
@@ -1606,160 +1472,6 @@ export interface ApiCompanyCompany extends Schema.CollectionType {
       'api::company.company',
       'oneToMany',
       'api::company.company'
-    >;
-    locale: Attribute.String;
-  };
-}
-
-export interface ApiCompanyPromotionCardCompanyPromotionCard
-  extends Schema.CollectionType {
-  collectionName: 'company_promotion_cards';
-  info: {
-    singularName: 'company-promotion-card';
-    pluralName: 'company-promotion-cards';
-    displayName: 'Company Promotion Card';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    discount: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    images: Attribute.Media &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    position: Attribute.Component<'helpers.position'> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    description: Attribute.Text &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    youTubeVideoId: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    discountBanner: Attribute.Component<'components.banner'> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    touchText: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    touchLink: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    averageRating: Attribute.Float &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }> &
-      Attribute.SetMinMax<
-        {
-          min: 0;
-          max: 5;
-        },
-        number
-      > &
-      Attribute.DefaultTo<0>;
-    totalComments: Attribute.Integer &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }> &
-      Attribute.DefaultTo<0>;
-    services: Attribute.Relation<
-      'api::company-promotion-card.company-promotion-card',
-      'oneToMany',
-      'api::service.service'
-    >;
-    slug: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    location: Attribute.Text &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    comments: Attribute.Relation<
-      'api::company-promotion-card.company-promotion-card',
-      'manyToMany',
-      'api::comment.comment'
-    >;
-    area: Attribute.Relation<
-      'api::company-promotion-card.company-promotion-card',
-      'oneToOne',
-      'api::area.area'
-    >;
-    categories: Attribute.Relation<
-      'api::company-promotion-card.company-promotion-card',
-      'manyToMany',
-      'api::category.category'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::company-promotion-card.company-promotion-card',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::company-promotion-card.company-promotion-card',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    localizations: Attribute.Relation<
-      'api::company-promotion-card.company-promotion-card',
-      'oneToMany',
-      'api::company-promotion-card.company-promotion-card'
     >;
     locale: Attribute.String;
   };
@@ -2766,16 +2478,6 @@ export interface ApiServiceService extends Schema.CollectionType {
           localized: false;
         };
       }>;
-    company_promotion_card: Attribute.Relation<
-      'api::service.service',
-      'manyToOne',
-      'api::company-promotion-card.company-promotion-card'
-    >;
-    clubs: Attribute.Relation<
-      'api::service.service',
-      'manyToMany',
-      'api::club.club'
-    >;
     companies: Attribute.Relation<
       'api::service.service',
       'manyToMany',
@@ -3239,10 +2941,8 @@ declare module '@strapi/types' {
       'api::area.area': ApiAreaArea;
       'api::car-class.car-class': ApiCarClassCarClass;
       'api::category.category': ApiCategoryCategory;
-      'api::club.club': ApiClubClub;
       'api::comment.comment': ApiCommentComment;
       'api::company.company': ApiCompanyCompany;
-      'api::company-promotion-card.company-promotion-card': ApiCompanyPromotionCardCompanyPromotionCard;
       'api::event-card.event-card': ApiEventCardEventCard;
       'api::footer.footer': ApiFooterFooter;
       'api::header.header': ApiHeaderHeader;

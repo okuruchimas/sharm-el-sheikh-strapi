@@ -60,12 +60,6 @@
         }
       }
     },
-    "company_promotion_cards": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::company-promotion-card.company-promotion-card",
-      "inversedBy": "categories"
-    },
     "index": {
       "pluginOptions": {
         "i18n": {
