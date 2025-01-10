@@ -38,18 +38,6 @@
         }
       }
     },
-    "company_promotion_card": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::company-promotion-card.company-promotion-card",
-      "inversedBy": "services"
-    },
-    "clubs": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::club.club",
-      "mappedBy": "services"
-    },
     "companies": {
       "type": "relation",
       "relation": "manyToMany",

@@ -26,12 +26,6 @@
       "type": "string",
       "required": true
     },
-    "company_promotion_cards": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::company-promotion-card.company-promotion-card",
-      "inversedBy": "comments"
-    },
     "animators": {
       "type": "relation",
       "relation": "manyToMany",
