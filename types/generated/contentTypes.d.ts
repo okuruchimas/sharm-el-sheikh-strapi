@@ -1555,6 +1555,12 @@ export interface ApiEventCardEventCard extends Schema.CollectionType {
           localized: false;
         };
       }>;
+    position: Attribute.Component<'helpers.position'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
