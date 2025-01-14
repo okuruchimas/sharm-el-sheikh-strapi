@@ -1543,12 +1543,6 @@ export interface ApiEventCardEventCard extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    mapUrl: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     socialLinks: Attribute.Component<'helpers.social-media', true> &
       Attribute.SetPluginOptions<{
         i18n: {
