@@ -83,14 +83,6 @@
       },
       "type": "text"
     },
-    "mapUrl": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string"
-    },
     "socialLinks": {
       "type": "component",
       "repeatable": true,
