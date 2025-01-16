@@ -50,9 +50,9 @@
       "target": "api::animator.animator",
       "mappedBy": "animation_company"
     },
-    "images": {
+    "image": {
       "type": "media",
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "allowedTypes": [
         "images"

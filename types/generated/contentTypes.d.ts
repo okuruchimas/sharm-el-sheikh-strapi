@@ -833,7 +833,7 @@ export interface ApiAnimationCompanyAnimationCompany
       'oneToMany',
       'api::animator.animator'
     >;
-    images: Attribute.Media &
+    image: Attribute.Media &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
