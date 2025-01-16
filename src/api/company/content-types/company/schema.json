@@ -178,6 +178,22 @@
         }
       },
       "component": "components.company-page-fields"
+    },
+    "wc": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "animators": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::animator.animator",
+      "mappedBy": "company"
     }
   }
 }

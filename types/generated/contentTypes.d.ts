@@ -795,19 +795,123 @@ export interface ApiAnimationCompanyAnimationCompany
     singularName: 'animation-company';
     pluralName: 'animation-companies';
     displayName: 'Animation company';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
-    key: Attribute.String & Attribute.Required;
-    value: Attribute.String & Attribute.Required;
-    index: Attribute.Integer & Attribute.Required & Attribute.DefaultTo<0>;
+    key: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    value: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    index: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<0>;
     animators: Attribute.Relation<
       'api::animation-company.animation-company',
       'oneToMany',
       'api::animator.animator'
     >;
+    images: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    about: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    vacancies: Attribute.Component<'helpers.text-with-title', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    socialLinks: Attribute.Component<'helpers.social-media', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    employmentNumber: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    complaintsNumber: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    totalComments: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<0>;
+    averageRating: Attribute.Float &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.SetMinMax<
+        {
+          min: 0;
+          max: 5;
+        },
+        number
+      > &
+      Attribute.DefaultTo<0>;
+    location: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    position: Attribute.Component<'helpers.position'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    slug: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -823,6 +927,12 @@ export interface ApiAnimationCompanyAnimationCompany
       'admin::user'
     > &
       Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::animation-company.animation-company',
+      'oneToMany',
+      'api::animation-company.animation-company'
+    >;
+    locale: Attribute.String;
   };
 }
 
@@ -900,11 +1010,6 @@ export interface ApiAnimatorAnimator extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    animation_company: Attribute.Relation<
-      'api::animator.animator',
-      'manyToOne',
-      'api::animation-company.animation-company'
-    >;
     entertainmentServices: Attribute.Component<
       'components.entertainment-service',
       true
@@ -947,6 +1052,22 @@ export interface ApiAnimatorAnimator extends Schema.CollectionType {
         };
       }> &
       Attribute.DefaultTo<0>;
+    company: Attribute.Relation<
+      'api::animator.animator',
+      'manyToOne',
+      'api::company.company'
+    >;
+    position: Attribute.Component<'helpers.position'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    animation_company: Attribute.Relation<
+      'api::animator.animator',
+      'manyToOne',
+      'api::animation-company.animation-company'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1453,6 +1574,19 @@ export interface ApiCompanyCompany extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    wc: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<false>;
+    animators: Attribute.Relation<
+      'api::company.company',
+      'oneToMany',
+      'api::animator.animator'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
