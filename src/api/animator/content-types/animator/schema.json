@@ -98,12 +98,6 @@
       "component": "helpers.string-array",
       "required": true
     },
-    "animation_company": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::animation-company.animation-company",
-      "inversedBy": "animators"
-    },
     "entertainmentServices": {
       "displayName": "Entertainment Service",
       "type": "component",
@@ -148,6 +142,28 @@
       "type": "integer",
       "default": 0,
       "required": true
+    },
+    "company": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::company.company",
+      "inversedBy": "animators"
+    },
+    "position": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "component": "helpers.position"
+    },
+    "animation_company": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::animation-company.animation-company",
+      "inversedBy": "animators"
     }
   }
 }
