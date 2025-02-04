@@ -125,10 +125,11 @@ export interface HelpersPosition extends Schema.Component {
   info: {
     displayName: 'Position';
     icon: 'collapse';
+    description: '';
   };
   attributes: {
-    lat: Attribute.String;
-    lng: Attribute.String;
+    lat: Attribute.Float & Attribute.Required;
+    lng: Attribute.Float & Attribute.Required;
   };
 }
 
