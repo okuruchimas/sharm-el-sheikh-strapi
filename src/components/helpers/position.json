@@ -2,15 +2,18 @@
   "collectionName": "components_helpers_positions",
   "info": {
     "displayName": "Position",
-    "icon": "collapse"
+    "icon": "collapse",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "lat": {
-      "type": "string"
+      "required": true,
+      "type": "float"
     },
     "lng": {
-      "type": "string"
+      "type": "float",
+      "required": true
     }
   }
 }
