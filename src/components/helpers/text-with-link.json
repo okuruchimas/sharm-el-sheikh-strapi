@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_helpers_text_with_links",
+  "info": {
+    "displayName": "Text With Link"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string",
+      "required": true
+    },
+    "link": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

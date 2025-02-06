@@ -2943,6 +2943,138 @@ export interface ApiTaxiServiceTaxiService extends Schema.CollectionType {
   };
 }
 
+export interface ApiTourTour extends Schema.CollectionType {
+  collectionName: 'tours';
+  info: {
+    singularName: 'tour';
+    pluralName: 'tours';
+    displayName: 'Tour';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    slug: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    images: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    location: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    position: Attribute.Component<'helpers.position'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    price: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    duration: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    groupSize: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    informationProvider: Attribute.Component<'helpers.text-with-link'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    tourComponents: Attribute.Component<'helpers.string-array', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    about: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    totalComments: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<0>;
+    averageRating: Attribute.Float &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.SetMinMax<
+        {
+          min: 0;
+          max: 5;
+        },
+        number
+      > &
+      Attribute.DefaultTo<0>;
+    tour_guides: Attribute.Relation<
+      'api::tour.tour',
+      'manyToMany',
+      'api::tour-guide.tour-guide'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::tour.tour', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::tour.tour', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::tour.tour',
+      'oneToMany',
+      'api::tour.tour'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiTourGuideTourGuide extends Schema.CollectionType {
   collectionName: 'tour_guides';
   info: {
@@ -3002,13 +3134,11 @@ export interface ApiTourGuideTourGuide extends Schema.CollectionType {
         };
       }> &
       Attribute.DefaultTo<0>;
-    tours: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
+    tours: Attribute.Relation<
+      'api::tour-guide.tour-guide',
+      'manyToMany',
+      'api::tour.tour'
+    >;
     comments: Attribute.Relation<
       'api::tour-guide.tour-guide',
       'manyToMany',
@@ -3093,6 +3223,7 @@ declare module '@strapi/types' {
       'api::support-service.support-service': ApiSupportServiceSupportService;
       'api::taxi-driver.taxi-driver': ApiTaxiDriverTaxiDriver;
       'api::taxi-service.taxi-service': ApiTaxiServiceTaxiService;
+      'api::tour.tour': ApiTourTour;
       'api::tour-guide.tour-guide': ApiTourGuideTourGuide;
     }
   }

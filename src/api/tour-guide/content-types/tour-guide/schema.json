@@ -74,13 +74,10 @@
       "default": 0
     },
     "tours": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string",
-      "required": true
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tour.tour",
+      "inversedBy": "tour_guides"
     },
     "comments": {
       "type": "relation",
