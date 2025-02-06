@@ -156,6 +156,17 @@ export interface HelpersStringArray extends Schema.Component {
   };
 }
 
+export interface HelpersTextWithLink extends Schema.Component {
+  collectionName: 'components_helpers_text_with_links';
+  info: {
+    displayName: 'Text With Link';
+  };
+  attributes: {
+    text: Attribute.String & Attribute.Required;
+    link: Attribute.String & Attribute.Required;
+  };
+}
+
 export interface HelpersTextWithTitle extends Schema.Component {
   collectionName: 'components_helpers_text_with_titles';
   info: {
@@ -219,6 +230,7 @@ declare module '@strapi/types' {
       'helpers.position': HelpersPosition;
       'helpers.social-media': HelpersSocialMedia;
       'helpers.string-array': HelpersStringArray;
+      'helpers.text-with-link': HelpersTextWithLink;
       'helpers.text-with-title': HelpersTextWithTitle;
       'helpers.time-slot': HelpersTimeSlot;
       'helpers.week-day': HelpersWeekDay;
