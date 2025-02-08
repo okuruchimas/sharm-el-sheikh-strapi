@@ -2846,6 +2846,11 @@ export interface ApiTaxiDriverTaxiDriver extends Schema.CollectionType {
       'manyToMany',
       'api::taxi-service.taxi-service'
     >;
+    taxi_spots: Attribute.Relation<
+      'api::taxi-driver.taxi-driver',
+      'manyToMany',
+      'api::taxi-spot.taxi-spot'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2938,6 +2943,115 @@ export interface ApiTaxiServiceTaxiService extends Schema.CollectionType {
       'api::taxi-service.taxi-service',
       'oneToMany',
       'api::taxi-service.taxi-service'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiTaxiSpotTaxiSpot extends Schema.CollectionType {
+  collectionName: 'taxi_spots';
+  info: {
+    singularName: 'taxi-spot';
+    pluralName: 'taxi-spots';
+    displayName: 'Taxi Spot';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    slug: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    images: Attribute.Media &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    location: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    position: Attribute.Component<'helpers.position'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    about: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    totalComments: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<0>;
+    averageRating: Attribute.Float &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.SetMinMax<
+        {
+          min: 0;
+          max: 5;
+        },
+        number
+      > &
+      Attribute.DefaultTo<0>;
+    taxi_drivers: Attribute.Relation<
+      'api::taxi-spot.taxi-spot',
+      'manyToMany',
+      'api::taxi-driver.taxi-driver'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::taxi-spot.taxi-spot',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::taxi-spot.taxi-spot',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::taxi-spot.taxi-spot',
+      'oneToMany',
+      'api::taxi-spot.taxi-spot'
     >;
     locale: Attribute.String;
   };
@@ -3223,6 +3337,7 @@ declare module '@strapi/types' {
       'api::support-service.support-service': ApiSupportServiceSupportService;
       'api::taxi-driver.taxi-driver': ApiTaxiDriverTaxiDriver;
       'api::taxi-service.taxi-service': ApiTaxiServiceTaxiService;
+      'api::taxi-spot.taxi-spot': ApiTaxiSpotTaxiSpot;
       'api::tour.tour': ApiTourTour;
       'api::tour-guide.tour-guide': ApiTourGuideTourGuide;
     }
