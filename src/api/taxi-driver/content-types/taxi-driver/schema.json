@@ -158,6 +158,12 @@
       "relation": "manyToMany",
       "target": "api::taxi-service.taxi-service",
       "inversedBy": "taxi_drivers"
+    },
+    "taxi_spots": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::taxi-spot.taxi-spot",
+      "mappedBy": "taxi_drivers"
     }
   }
 }
