@@ -2497,6 +2497,11 @@ export interface ApiPhotographerPhotographer extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    photography_locations: Attribute.Relation<
+      'api::photographer.photographer',
+      'manyToMany',
+      'api::photography-location.photography-location'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2516,6 +2521,124 @@ export interface ApiPhotographerPhotographer extends Schema.CollectionType {
       'api::photographer.photographer',
       'oneToMany',
       'api::photographer.photographer'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiPhotographyLocationPhotographyLocation
+  extends Schema.CollectionType {
+  collectionName: 'photography_locations';
+  info: {
+    singularName: 'photography-location';
+    pluralName: 'photography-locations';
+    displayName: 'Photography Location';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    slug: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    images: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    location: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    position: Attribute.Component<'helpers.position', true> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    about: Attribute.Blocks &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    totalComments: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<0>;
+    averageRating: Attribute.Float &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.SetMinMax<
+        {
+          min: 0;
+          max: 5;
+        },
+        number
+      > &
+      Attribute.DefaultTo<0>;
+    photographers: Attribute.Relation<
+      'api::photography-location.photography-location',
+      'manyToMany',
+      'api::photographer.photographer'
+    >;
+    type: Attribute.Enumeration<['studio', 'location']> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<'studio'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::photography-location.photography-location',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::photography-location.photography-location',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::photography-location.photography-location',
+      'oneToMany',
+      'api::photography-location.photography-location'
     >;
     locale: Attribute.String;
   };
@@ -3332,6 +3455,7 @@ declare module '@strapi/types' {
       'api::medication-category.medication-category': ApiMedicationCategoryMedicationCategory;
       'api::pharmacies-page.pharmacies-page': ApiPharmaciesPagePharmaciesPage;
       'api::photographer.photographer': ApiPhotographerPhotographer;
+      'api::photography-location.photography-location': ApiPhotographyLocationPhotographyLocation;
       'api::photography-style.photography-style': ApiPhotographyStylePhotographyStyle;
       'api::service.service': ApiServiceService;
       'api::support-service.support-service': ApiSupportServiceSupportService;
