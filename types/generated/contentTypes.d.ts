@@ -2571,7 +2571,7 @@ export interface ApiPhotographyLocationPhotographyLocation
           localized: true;
         };
       }>;
-    position: Attribute.Component<'helpers.position', true> &
+    position: Attribute.Component<'helpers.position'> &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
