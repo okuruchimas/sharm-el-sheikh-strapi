@@ -2578,12 +2578,6 @@ export interface ApiPhotographyLocationPhotographyLocation
           localized: false;
         };
       }>;
-    about: Attribute.Blocks &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     totalComments: Attribute.Integer &
       Attribute.Required &
       Attribute.SetPluginOptions<{
@@ -2620,6 +2614,12 @@ export interface ApiPhotographyLocationPhotographyLocation
         };
       }> &
       Attribute.DefaultTo<'studio'>;
+    about: Attribute.RichText &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
