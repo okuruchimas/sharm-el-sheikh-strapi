@@ -82,12 +82,6 @@
       "target": "api::photography-style.photography-style",
       "inversedBy": "photographers"
     },
-    "locations": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::location.location",
-      "inversedBy": "photographers"
-    },
     "comments": {
       "type": "relation",
       "relation": "manyToMany",
