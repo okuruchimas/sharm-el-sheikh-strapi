@@ -147,6 +147,12 @@
       "relation": "manyToMany",
       "target": "api::tour-guide.tour-guide",
       "inversedBy": "tours"
+    },
+    "tour_categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tour-category.tour-category",
+      "mappedBy": "tours"
     }
   }
 }

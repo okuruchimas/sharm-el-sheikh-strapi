@@ -2075,65 +2075,6 @@ export interface ApiLanguageLanguage extends Schema.CollectionType {
   };
 }
 
-export interface ApiLocationLocation extends Schema.CollectionType {
-  collectionName: 'locations';
-  info: {
-    singularName: 'location';
-    pluralName: 'locations';
-    displayName: 'Location';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    key: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    value: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    photographers: Attribute.Relation<
-      'api::location.location',
-      'manyToMany',
-      'api::photographer.photographer'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::location.location',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::location.location',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    localizations: Attribute.Relation<
-      'api::location.location',
-      'oneToMany',
-      'api::location.location'
-    >;
-    locale: Attribute.String;
-  };
-}
-
 export interface ApiMedicationMedication extends Schema.CollectionType {
   collectionName: 'medications';
   info: {
@@ -2473,11 +2414,6 @@ export interface ApiPhotographerPhotographer extends Schema.CollectionType {
       'api::photographer.photographer',
       'manyToMany',
       'api::photography-style.photography-style'
-    >;
-    locations: Attribute.Relation<
-      'api::photographer.photographer',
-      'manyToMany',
-      'api::location.location'
     >;
     comments: Attribute.Relation<
       'api::photographer.photographer',
@@ -3296,6 +3232,11 @@ export interface ApiTourTour extends Schema.CollectionType {
       'manyToMany',
       'api::tour-guide.tour-guide'
     >;
+    tour_categories: Attribute.Relation<
+      'api::tour.tour',
+      'manyToMany',
+      'api::tour-category.tour-category'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -3307,6 +3248,87 @@ export interface ApiTourTour extends Schema.CollectionType {
       'api::tour.tour',
       'oneToMany',
       'api::tour.tour'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiTourCategoryTourCategory extends Schema.CollectionType {
+  collectionName: 'tour_categories';
+  info: {
+    singularName: 'tour-category';
+    pluralName: 'tour-categories';
+    displayName: 'Tour Category';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    key: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    value: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    icon: Attribute.Media &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    markerIcon: Attribute.Media &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    index: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<0>;
+    tours: Attribute.Relation<
+      'api::tour-category.tour-category',
+      'manyToMany',
+      'api::tour.tour'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::tour-category.tour-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::tour-category.tour-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::tour-category.tour-category',
+      'oneToMany',
+      'api::tour-category.tour-category'
     >;
     locale: Attribute.String;
   };
@@ -3450,7 +3472,6 @@ declare module '@strapi/types' {
       'api::home.home': ApiHomeHome;
       'api::hotspots-page.hotspots-page': ApiHotspotsPageHotspotsPage;
       'api::language.language': ApiLanguageLanguage;
-      'api::location.location': ApiLocationLocation;
       'api::medication.medication': ApiMedicationMedication;
       'api::medication-category.medication-category': ApiMedicationCategoryMedicationCategory;
       'api::pharmacies-page.pharmacies-page': ApiPharmaciesPagePharmaciesPage;
@@ -3463,6 +3484,7 @@ declare module '@strapi/types' {
       'api::taxi-service.taxi-service': ApiTaxiServiceTaxiService;
       'api::taxi-spot.taxi-spot': ApiTaxiSpotTaxiSpot;
       'api::tour.tour': ApiTourTour;
+      'api::tour-category.tour-category': ApiTourCategoryTourCategory;
       'api::tour-guide.tour-guide': ApiTourGuideTourGuide;
     }
   }
