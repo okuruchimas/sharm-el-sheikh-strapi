@@ -63,15 +63,6 @@
         }
       }
     },
-    "about": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "text",
-      "required": false
-    },
     "vacancies": {
       "displayName": "Text With Title",
       "type": "component",
@@ -158,6 +149,14 @@
       },
       "type": "string",
       "required": true
+    },
+    "about": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "richtext"
     }
   }
 }

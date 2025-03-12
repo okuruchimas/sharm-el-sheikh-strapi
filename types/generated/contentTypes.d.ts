@@ -839,12 +839,6 @@ export interface ApiAnimationCompanyAnimationCompany
           localized: false;
         };
       }>;
-    about: Attribute.Text &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     vacancies: Attribute.Component<'helpers.text-with-title', true> &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -910,6 +904,12 @@ export interface ApiAnimationCompanyAnimationCompany
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
+        };
+      }>;
+    about: Attribute.RichText &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
         };
       }>;
     createdAt: Attribute.DateTime;
@@ -3013,6 +3013,7 @@ export interface ApiTaxiSpotTaxiSpot extends Schema.CollectionType {
     singularName: 'taxi-spot';
     pluralName: 'taxi-spots';
     displayName: 'Taxi Spot';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -3058,12 +3059,6 @@ export interface ApiTaxiSpotTaxiSpot extends Schema.CollectionType {
           localized: false;
         };
       }>;
-    about: Attribute.Text &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     totalComments: Attribute.Integer &
       Attribute.Required &
       Attribute.SetPluginOptions<{
@@ -3092,6 +3087,12 @@ export interface ApiTaxiSpotTaxiSpot extends Schema.CollectionType {
       'manyToMany',
       'api::taxi-driver.taxi-driver'
     >;
+    about: Attribute.RichText &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -3122,6 +3123,7 @@ export interface ApiTourTour extends Schema.CollectionType {
     singularName: 'tour';
     pluralName: 'tours';
     displayName: 'Tour';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -3198,12 +3200,6 @@ export interface ApiTourTour extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    about: Attribute.Text &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     totalComments: Attribute.Integer &
       Attribute.Required &
       Attribute.SetPluginOptions<{
@@ -3237,6 +3233,12 @@ export interface ApiTourTour extends Schema.CollectionType {
       'manyToMany',
       'api::tour-category.tour-category'
     >;
+    about: Attribute.RichText &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
