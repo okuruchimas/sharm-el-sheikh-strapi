@@ -62,11 +62,12 @@ export interface ComponentsEntertainmentService extends Schema.Component {
     description: '';
   };
   attributes: {
-    image: Attribute.Media & Attribute.Required;
+    images: Attribute.Media & Attribute.Required;
     serviceName: Attribute.String & Attribute.Required;
     duration: Attribute.String & Attribute.Required;
     place: Attribute.String & Attribute.Required;
     price: Attribute.String & Attribute.Required;
+    about: Attribute.RichText;
   };
 }
 

@@ -6,13 +6,13 @@
   },
   "options": {},
   "attributes": {
-    "image": {
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false,
-      "required": true
+      ]
     },
     "serviceName": {
       "type": "string",
@@ -29,6 +29,9 @@
     "price": {
       "type": "string",
       "required": true
+    },
+    "about": {
+      "type": "richtext"
     }
   }
 }

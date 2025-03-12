@@ -4,7 +4,8 @@
   "info": {
     "singularName": "taxi-spot",
     "pluralName": "taxi-spots",
-    "displayName": "Taxi Spot"
+    "displayName": "Taxi Spot",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -34,17 +35,17 @@
       "required": true
     },
     "images": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
       "allowedTypes": [
         "images"
       ],
-      "type": "media",
-      "multiple": true,
       "pluginOptions": {
         "i18n": {
           "localized": false
         }
-      },
-      "required": true
+      }
     },
     "location": {
       "pluginOptions": {
@@ -65,14 +66,6 @@
       },
       "component": "helpers.position",
       "required": true
-    },
-    "about": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "text"
     },
     "totalComments": {
       "pluginOptions": {
@@ -101,6 +94,14 @@
       "relation": "manyToMany",
       "target": "api::taxi-driver.taxi-driver",
       "inversedBy": "taxi_spots"
+    },
+    "about": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "richtext"
     }
   }
 }

@@ -77,7 +77,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::tour.tour",
-      "inversedBy": "tour_guides"
+      "mappedBy": "tour_guides"
     },
     "comments": {
       "type": "relation",
