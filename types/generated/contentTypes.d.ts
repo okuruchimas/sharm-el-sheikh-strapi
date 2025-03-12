@@ -1057,12 +1057,6 @@ export interface ApiAnimatorAnimator extends Schema.CollectionType {
       'manyToOne',
       'api::company.company'
     >;
-    position: Attribute.Component<'helpers.position'> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
     animation_company: Attribute.Relation<
       'api::animator.animator',
       'manyToOne',
