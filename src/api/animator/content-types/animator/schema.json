@@ -154,6 +154,16 @@
       "relation": "manyToOne",
       "target": "api::animation-company.animation-company",
       "inversedBy": "animators"
+    },
+    "position": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "helpers.position"
     }
   }
 }
