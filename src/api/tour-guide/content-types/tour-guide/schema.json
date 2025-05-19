@@ -103,6 +103,12 @@
         }
       },
       "type": "text"
+    },
+    "tour_operator_companies": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tour-operator-company.tour-operator-company",
+      "mappedBy": "tour_guides"
     }
   }
 }

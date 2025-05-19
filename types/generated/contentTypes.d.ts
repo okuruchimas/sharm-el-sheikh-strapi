@@ -3460,6 +3460,11 @@ export interface ApiTourGuideTourGuide extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    tour_operator_companies: Attribute.Relation<
+      'api::tour-guide.tour-guide',
+      'manyToMany',
+      'api::tour-operator-company.tour-operator-company'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -3479,6 +3484,131 @@ export interface ApiTourGuideTourGuide extends Schema.CollectionType {
       'api::tour-guide.tour-guide',
       'oneToMany',
       'api::tour-guide.tour-guide'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiTourOperatorCompanyTourOperatorCompany
+  extends Schema.CollectionType {
+  collectionName: 'tour_operator_companies';
+  info: {
+    singularName: 'tour-operator-company';
+    pluralName: 'tour-operator-companies';
+    displayName: 'Tour Operator Company';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    slug: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    image: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    vacancies: Attribute.Component<'helpers.text-with-title', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    socialLinks: Attribute.Component<'helpers.social-media', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    employmentNumber: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    complaintsNumber: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    totalComments: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<0>;
+    averageRating: Attribute.Float &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<0>;
+    location: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    position: Attribute.Component<'helpers.position'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    about: Attribute.RichText &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    tour_guides: Attribute.Relation<
+      'api::tour-operator-company.tour-operator-company',
+      'manyToMany',
+      'api::tour-guide.tour-guide'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::tour-operator-company.tour-operator-company',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::tour-operator-company.tour-operator-company',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::tour-operator-company.tour-operator-company',
+      'oneToMany',
+      'api::tour-operator-company.tour-operator-company'
     >;
     locale: Attribute.String;
   };
@@ -3531,6 +3661,7 @@ declare module '@strapi/types' {
       'api::tour.tour': ApiTourTour;
       'api::tour-category.tour-category': ApiTourCategoryTourCategory;
       'api::tour-guide.tour-guide': ApiTourGuideTourGuide;
+      'api::tour-operator-company.tour-operator-company': ApiTourOperatorCompanyTourOperatorCompany;
     }
   }
 }
