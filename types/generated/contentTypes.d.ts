@@ -805,6 +805,7 @@ export interface ApiAdvertisementAdvertisement extends Schema.CollectionType {
     email: Attribute.String & Attribute.Required;
     publicationType: Attribute.Enumeration<['member', 'to', 'from']> &
       Attribute.Required;
+    title: Attribute.String & Attribute.Required;
     location: Attribute.String & Attribute.Required;
     price: Attribute.String & Attribute.Required;
     description: Attribute.Text & Attribute.Required;
