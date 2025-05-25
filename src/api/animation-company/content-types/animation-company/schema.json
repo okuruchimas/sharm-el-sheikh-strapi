@@ -16,16 +16,7 @@
     }
   },
   "attributes": {
-    "key": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
-      "type": "string",
-      "required": true
-    },
-    "value": {
+    "name": {
       "pluginOptions": {
         "i18n": {
           "localized": true
