@@ -848,14 +848,7 @@ export interface ApiAnimationCompanyAnimationCompany
     };
   };
   attributes: {
-    key: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    value: Attribute.String &
+    name: Attribute.String &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
