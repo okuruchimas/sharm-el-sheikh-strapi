@@ -788,48 +788,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface ApiAdvertisementAdvertisement extends Schema.CollectionType {
-  collectionName: 'advertisements';
-  info: {
-    singularName: 'advertisement';
-    pluralName: 'advertisements';
-    displayName: 'Advertisement';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    description: Attribute.Text & Attribute.Required;
-    mobile: Attribute.String & Attribute.Required;
-    sellerName: Attribute.String & Attribute.Required;
-    contactMethod: Attribute.String;
-    email: Attribute.String & Attribute.Required;
-    publicationType: Attribute.Enumeration<['member', 'to', 'from']> &
-      Attribute.Required;
-    location: Attribute.String & Attribute.Required;
-    price: Attribute.String & Attribute.Required;
-    personalCardLink: Attribute.String;
-    agree: Attribute.Boolean;
-    images: Attribute.Media;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::advertisement.advertisement',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::advertisement.advertisement',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiAnimationCompanyAnimationCompany
   extends Schema.CollectionType {
   collectionName: 'animation_companies';
@@ -1649,6 +1607,48 @@ export interface ApiCompanyCompany extends Schema.CollectionType {
       'api::company.company'
     >;
     locale: Attribute.String;
+  };
+}
+
+export interface ApiDeliveryDelivery extends Schema.CollectionType {
+  collectionName: 'deliveries';
+  info: {
+    singularName: 'delivery';
+    pluralName: 'deliveries';
+    displayName: 'Delivery';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    mobile: Attribute.String & Attribute.Required;
+    name: Attribute.String & Attribute.Required;
+    contactMethod: Attribute.String;
+    email: Attribute.String & Attribute.Required;
+    publicationType: Attribute.Enumeration<['member', 'to', 'from']> &
+      Attribute.Required;
+    location: Attribute.String & Attribute.Required;
+    price: Attribute.String & Attribute.Required;
+    personalCardLink: Attribute.String;
+    agree: Attribute.Boolean;
+    images: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::delivery.delivery',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::delivery.delivery',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
   };
 }
 
@@ -3631,7 +3631,6 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'api::advertisement.advertisement': ApiAdvertisementAdvertisement;
       'api::animation-company.animation-company': ApiAnimationCompanyAnimationCompany;
       'api::animator.animator': ApiAnimatorAnimator;
       'api::announcement.announcement': ApiAnnouncementAnnouncement;
@@ -3640,6 +3639,7 @@ declare module '@strapi/types' {
       'api::category.category': ApiCategoryCategory;
       'api::comment.comment': ApiCommentComment;
       'api::company.company': ApiCompanyCompany;
+      'api::delivery.delivery': ApiDeliveryDelivery;
       'api::event-card.event-card': ApiEventCardEventCard;
       'api::footer.footer': ApiFooterFooter;
       'api::header.header': ApiHeaderHeader;

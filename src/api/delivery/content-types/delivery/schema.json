@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "advertisements",
+  "collectionName": "deliveries",
   "info": {
-    "singularName": "advertisement",
-    "pluralName": "advertisements",
-    "displayName": "Advertisement"
+    "singularName": "delivery",
+    "pluralName": "deliveries",
+    "displayName": "Delivery"
   },
   "options": {
     "draftAndPublish": true
@@ -23,12 +23,13 @@
       "type": "string",
       "required": true
     },
-    "sellerName": {
+    "name": {
       "type": "string",
       "required": true
     },
     "contactMethod": {
-      "type": "string"
+      "type": "string",
+      "required": false
     },
     "email": {
       "type": "string",
@@ -62,8 +63,7 @@
         "images"
       ],
       "type": "media",
-      "multiple": true,
-      "required": false
+      "multiple": true
     }
   }
 }
