@@ -1,11 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "adds",
+  "collectionName": "advertisements",
   "info": {
-    "singularName": "add",
-    "pluralName": "adds",
-    "displayName": "Add",
-    "description": ""
+    "singularName": "advertisement",
+    "pluralName": "advertisements",
+    "displayName": "Advertisement"
   },
   "options": {
     "draftAndPublish": true
@@ -44,20 +43,21 @@
       "type": "string",
       "required": true
     },
+    "contactMethod": {
+      "type": "string",
+      "required": true
+    },
     "images": {
-      "type": "media",
-      "multiple": true,
-      "required": false,
       "allowedTypes": [
         "images"
-      ]
+      ],
+      "type": "media",
+      "multiple": true,
+      "required": false
     },
     "isVip": {
       "type": "boolean",
       "default": false
-    },
-    "contactMethod": {
-      "type": "string"
     }
   }
 }
