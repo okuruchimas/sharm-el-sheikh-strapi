@@ -788,6 +788,101 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiAddAdd extends Schema.CollectionType {
+  collectionName: 'adds';
+  info: {
+    singularName: 'add';
+    pluralName: 'adds';
+    displayName: 'Add';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    name: Attribute.String & Attribute.Required;
+    mobile: Attribute.String & Attribute.Required;
+    email: Attribute.String & Attribute.Required;
+    category: Attribute.String & Attribute.Required;
+    location: Attribute.String & Attribute.Required;
+    price: Attribute.String & Attribute.Required;
+    images: Attribute.Media;
+    isVip: Attribute.Boolean & Attribute.DefaultTo<false>;
+    contactMethod: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::add.add', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::add.add', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiAddCategoryAddCategory extends Schema.CollectionType {
+  collectionName: 'add_categories';
+  info: {
+    singularName: 'add-category';
+    pluralName: 'add-categories';
+    displayName: 'Add Category';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    key: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    value: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    index: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<0>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::add-category.add-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::add-category.add-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::add-category.add-category',
+      'oneToMany',
+      'api::add-category.add-category'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiAnimationCompanyAnimationCompany
   extends Schema.CollectionType {
   collectionName: 'animation_companies';
@@ -3631,6 +3726,8 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::add.add': ApiAddAdd;
+      'api::add-category.add-category': ApiAddCategoryAddCategory;
       'api::animation-company.animation-company': ApiAnimationCompanyAnimationCompany;
       'api::animator.animator': ApiAnimatorAnimator;
       'api::announcement.announcement': ApiAnnouncementAnnouncement;
