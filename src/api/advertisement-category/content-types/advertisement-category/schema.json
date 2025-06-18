@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "add_categories",
+  "collectionName": "advertisement_categories",
   "info": {
-    "singularName": "add-category",
-    "pluralName": "add-categories",
-    "displayName": "Add Category"
+    "singularName": "advertisement-category",
+    "pluralName": "advertisement-categories",
+    "displayName": "Advertisement Category"
   },
   "options": {
     "draftAndPublish": true

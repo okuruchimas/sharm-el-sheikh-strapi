@@ -788,13 +788,12 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface ApiAddAdd extends Schema.CollectionType {
-  collectionName: 'adds';
+export interface ApiAdvertisementAdvertisement extends Schema.CollectionType {
+  collectionName: 'advertisements';
   info: {
-    singularName: 'add';
-    pluralName: 'adds';
-    displayName: 'Add';
-    description: '';
+    singularName: 'advertisement';
+    pluralName: 'advertisements';
+    displayName: 'Advertisement';
   };
   options: {
     draftAndPublish: true;
@@ -808,25 +807,34 @@ export interface ApiAddAdd extends Schema.CollectionType {
     category: Attribute.String & Attribute.Required;
     location: Attribute.String & Attribute.Required;
     price: Attribute.String & Attribute.Required;
+    contactMethod: Attribute.String & Attribute.Required;
     images: Attribute.Media;
     isVip: Attribute.Boolean & Attribute.DefaultTo<false>;
-    contactMethod: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::add.add', 'oneToOne', 'admin::user'> &
+    createdBy: Attribute.Relation<
+      'api::advertisement.advertisement',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private;
-    updatedBy: Attribute.Relation<'api::add.add', 'oneToOne', 'admin::user'> &
+    updatedBy: Attribute.Relation<
+      'api::advertisement.advertisement',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private;
   };
 }
 
-export interface ApiAddCategoryAddCategory extends Schema.CollectionType {
-  collectionName: 'add_categories';
+export interface ApiAdvertisementCategoryAdvertisementCategory
+  extends Schema.CollectionType {
+  collectionName: 'advertisement_categories';
   info: {
-    singularName: 'add-category';
-    pluralName: 'add-categories';
-    displayName: 'Add Category';
+    singularName: 'advertisement-category';
+    pluralName: 'advertisement-categories';
+    displayName: 'Advertisement Category';
   };
   options: {
     draftAndPublish: true;
@@ -863,21 +871,21 @@ export interface ApiAddCategoryAddCategory extends Schema.CollectionType {
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::add-category.add-category',
+      'api::advertisement-category.advertisement-category',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::add-category.add-category',
+      'api::advertisement-category.advertisement-category',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     localizations: Attribute.Relation<
-      'api::add-category.add-category',
+      'api::advertisement-category.advertisement-category',
       'oneToMany',
-      'api::add-category.add-category'
+      'api::advertisement-category.advertisement-category'
     >;
     locale: Attribute.String;
   };
@@ -3726,8 +3734,8 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'api::add.add': ApiAddAdd;
-      'api::add-category.add-category': ApiAddCategoryAddCategory;
+      'api::advertisement.advertisement': ApiAdvertisementAdvertisement;
+      'api::advertisement-category.advertisement-category': ApiAdvertisementCategoryAdvertisementCategory;
       'api::animation-company.animation-company': ApiAnimationCompanyAnimationCompany;
       'api::animator.animator': ApiAnimatorAnimator;
       'api::announcement.announcement': ApiAnnouncementAnnouncement;
