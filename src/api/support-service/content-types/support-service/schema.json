@@ -4,7 +4,8 @@
   "info": {
     "singularName": "support-service",
     "pluralName": "support-services",
-    "displayName": "Support Service"
+    "displayName": "Support Service",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -15,7 +16,7 @@
     }
   },
   "attributes": {
-    "name": {
+    "title": {
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -24,7 +25,7 @@
       "type": "string",
       "required": true
     },
-    "phoneNumber": {
+    "phone": {
       "pluginOptions": {
         "i18n": {
           "localized": false
@@ -42,7 +43,7 @@
       "type": "string",
       "required": true
     },
-    "mapLink": {
+    "locationUrl": {
       "pluginOptions": {
         "i18n": {
           "localized": false
@@ -51,31 +52,41 @@
       "type": "string"
     },
     "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images"
       ],
-      "type": "media",
-      "multiple": false,
       "pluginOptions": {
         "i18n": {
           "localized": false
         }
-      },
-      "required": true
+      }
     },
-    "category": {
+    "support_services_category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::support-services-category.support-services-category",
+      "inversedBy": "support_services"
+    },
+    "position": {
+      "type": "component",
+      "repeatable": false,
       "pluginOptions": {
         "i18n": {
           "localized": false
         }
       },
-      "type": "enumeration",
-      "enum": [
-        "emergency-services",
-        "assistance-services",
-        "embassies"
-      ],
-      "required": true
+      "component": "helpers.position"
+    },
+    "description": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "richtext"
     }
   }
 }
