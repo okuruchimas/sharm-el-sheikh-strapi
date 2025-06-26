@@ -2943,6 +2943,7 @@ export interface ApiSupportServicesCategorySupportServicesCategory
     singularName: 'support-services-category';
     pluralName: 'support-services-categories';
     displayName: 'Support Services Category';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -2991,6 +2992,12 @@ export interface ApiSupportServicesCategorySupportServicesCategory
       'oneToMany',
       'api::support-service.support-service'
     >;
+    description: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

@@ -4,7 +4,8 @@
   "info": {
     "singularName": "support-services-category",
     "pluralName": "support-services-categories",
-    "displayName": "Support Services Category"
+    "displayName": "Support Services Category",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -34,11 +35,12 @@
       "required": true
     },
     "icon": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
       ],
-      "type": "media",
-      "multiple": false,
       "pluginOptions": {
         "i18n": {
           "localized": false
@@ -46,11 +48,12 @@
       }
     },
     "markerIcon": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
       ],
-      "type": "media",
-      "multiple": false,
       "pluginOptions": {
         "i18n": {
           "localized": false
@@ -71,6 +74,14 @@
       "relation": "oneToMany",
       "target": "api::support-service.support-service",
       "mappedBy": "support_services_category"
+    },
+    "description": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "text"
     }
   }
 }
