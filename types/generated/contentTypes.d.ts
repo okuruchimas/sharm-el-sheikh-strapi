@@ -2850,6 +2850,7 @@ export interface ApiSupportServiceSupportService extends Schema.CollectionType {
     singularName: 'support-service';
     pluralName: 'support-services';
     displayName: 'Support Service';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -2860,14 +2861,14 @@ export interface ApiSupportServiceSupportService extends Schema.CollectionType {
     };
   };
   attributes: {
-    name: Attribute.String &
+    title: Attribute.String &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
-    phoneNumber: Attribute.String &
+    phone: Attribute.String &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -2881,7 +2882,7 @@ export interface ApiSupportServiceSupportService extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    mapLink: Attribute.String &
+    locationUrl: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
@@ -2894,13 +2895,21 @@ export interface ApiSupportServiceSupportService extends Schema.CollectionType {
           localized: false;
         };
       }>;
-    category: Attribute.Enumeration<
-      ['emergency-services', 'assistance-services', 'embassies']
-    > &
-      Attribute.Required &
+    support_services_category: Attribute.Relation<
+      'api::support-service.support-service',
+      'manyToOne',
+      'api::support-services-category.support-services-category'
+    >;
+    position: Attribute.Component<'helpers.position'> &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
+        };
+      }>;
+    description: Attribute.RichText &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
         };
       }>;
     createdAt: Attribute.DateTime;
@@ -2922,6 +2931,85 @@ export interface ApiSupportServiceSupportService extends Schema.CollectionType {
       'api::support-service.support-service',
       'oneToMany',
       'api::support-service.support-service'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiSupportServicesCategorySupportServicesCategory
+  extends Schema.CollectionType {
+  collectionName: 'support_services_categories';
+  info: {
+    singularName: 'support-services-category';
+    pluralName: 'support-services-categories';
+    displayName: 'Support Services Category';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    key: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    value: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    icon: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    markerIcon: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    index: Attribute.Integer &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<0>;
+    support_services: Attribute.Relation<
+      'api::support-services-category.support-services-category',
+      'oneToMany',
+      'api::support-service.support-service'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::support-services-category.support-services-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::support-services-category.support-services-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::support-services-category.support-services-category',
+      'oneToMany',
+      'api::support-services-category.support-services-category'
     >;
     locale: Attribute.String;
   };
@@ -3759,6 +3847,7 @@ declare module '@strapi/types' {
       'api::photography-style.photography-style': ApiPhotographyStylePhotographyStyle;
       'api::service.service': ApiServiceService;
       'api::support-service.support-service': ApiSupportServiceSupportService;
+      'api::support-services-category.support-services-category': ApiSupportServicesCategorySupportServicesCategory;
       'api::taxi-driver.taxi-driver': ApiTaxiDriverTaxiDriver;
       'api::taxi-service.taxi-service': ApiTaxiServiceTaxiService;
       'api::taxi-spot.taxi-spot': ApiTaxiSpotTaxiSpot;
