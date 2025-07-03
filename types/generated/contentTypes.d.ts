@@ -1689,6 +1689,11 @@ export interface ApiCompanyCompany extends Schema.CollectionType {
       'oneToMany',
       'api::animator.animator'
     >;
+    event_cards: Attribute.Relation<
+      'api::company.company',
+      'manyToMany',
+      'api::event-card.event-card'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1833,6 +1838,11 @@ export interface ApiEventCardEventCard extends Schema.CollectionType {
           localized: false;
         };
       }>;
+    companies: Attribute.Relation<
+      'api::event-card.event-card',
+      'manyToMany',
+      'api::company.company'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
