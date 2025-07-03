@@ -194,6 +194,12 @@
       "relation": "oneToMany",
       "target": "api::animator.animator",
       "mappedBy": "company"
+    },
+    "event_cards": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::event-card.event-card",
+      "inversedBy": "companies"
     }
   }
 }

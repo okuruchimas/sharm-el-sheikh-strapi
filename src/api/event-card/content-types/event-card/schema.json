@@ -102,6 +102,12 @@
         }
       },
       "component": "helpers.position"
+    },
+    "companies": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::company.company",
+      "mappedBy": "event_cards"
     }
   }
 }
