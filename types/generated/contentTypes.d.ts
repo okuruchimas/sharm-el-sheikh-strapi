@@ -2830,6 +2830,12 @@ export interface ApiServiceService extends Schema.CollectionType {
       'manyToMany',
       'api::company.company'
     >;
+    pop_up: Attribute.Component<'components.pop-up'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
