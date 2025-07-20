@@ -84,6 +84,19 @@ export interface ComponentsHomeNavMenu extends Schema.Component {
   };
 }
 
+export interface ComponentsPopUp extends Schema.Component {
+  collectionName: 'components_components_pop_ups';
+  info: {
+    displayName: 'pop_up';
+    icon: 'calendar';
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Text;
+    media: Attribute.Media;
+  };
+}
+
 export interface ComponentsWorkSchedule extends Schema.Component {
   collectionName: 'components_components_work_schedules';
   info: {
@@ -226,6 +239,7 @@ declare module '@strapi/types' {
       'components.discount': ComponentsDiscount;
       'components.entertainment-service': ComponentsEntertainmentService;
       'components.home-nav-menu': ComponentsHomeNavMenu;
+      'components.pop-up': ComponentsPopUp;
       'components.work-schedule': ComponentsWorkSchedule;
       'header.navigation-menu': HeaderNavigationMenu;
       'helpers.position': HelpersPosition;
