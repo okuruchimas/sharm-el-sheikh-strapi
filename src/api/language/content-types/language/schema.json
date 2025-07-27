@@ -80,6 +80,12 @@
       "relation": "manyToMany",
       "target": "api::photographer.photographer",
       "mappedBy": "languages"
+    },
+    "tour_operators": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tour-operator.tour-operator",
+      "mappedBy": "languages"
     }
   }
 }

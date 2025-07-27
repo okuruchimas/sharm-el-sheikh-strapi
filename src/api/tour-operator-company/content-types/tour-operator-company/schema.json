@@ -134,6 +134,12 @@
       "relation": "manyToMany",
       "target": "api::tour-guide.tour-guide",
       "inversedBy": "tour_operator_companies"
+    },
+    "tour_operators": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tour-operator.tour-operator",
+      "mappedBy": "tour_operator_companies"
     }
   }
 }

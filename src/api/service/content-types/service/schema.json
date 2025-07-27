@@ -43,17 +43,6 @@
       "relation": "manyToMany",
       "target": "api::company.company",
       "mappedBy": "services"
-    },
-    "pop_up": {
-      "displayName": "pop_up",
-      "type": "component",
-      "repeatable": false,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "component": "components.pop-up"
     }
   }
 }

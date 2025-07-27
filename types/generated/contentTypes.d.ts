@@ -1523,6 +1523,11 @@ export interface ApiCommentComment extends Schema.CollectionType {
       'manyToMany',
       'api::company.company'
     >;
+    tour_operators: Attribute.Relation<
+      'api::comment.comment',
+      'manyToMany',
+      'api::tour-operator.tour-operator'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2205,6 +2210,11 @@ export interface ApiLanguageLanguage extends Schema.CollectionType {
       'manyToMany',
       'api::photographer.photographer'
     >;
+    tour_operators: Attribute.Relation<
+      'api::language.language',
+      'manyToMany',
+      'api::tour-operator.tour-operator'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2830,12 +2840,6 @@ export interface ApiServiceService extends Schema.CollectionType {
       'manyToMany',
       'api::company.company'
     >;
-    pop_up: Attribute.Component<'components.pop-up'> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -3702,6 +3706,63 @@ export interface ApiTourGuideTourGuide extends Schema.CollectionType {
   };
 }
 
+export interface ApiTourOperatorTourOperator extends Schema.CollectionType {
+  collectionName: 'tour_operators';
+  info: {
+    singularName: 'tour-operator';
+    pluralName: 'tour-operators';
+    displayName: 'Tour Operator';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    slug: Attribute.String;
+    name: Attribute.String;
+    img: Attribute.Media;
+    languages: Attribute.Relation<
+      'api::tour-operator.tour-operator',
+      'manyToMany',
+      'api::language.language'
+    >;
+    totalComments: Attribute.Integer;
+    averageRating: Attribute.Float;
+    comments: Attribute.Relation<
+      'api::tour-operator.tour-operator',
+      'manyToMany',
+      'api::comment.comment'
+    >;
+    socialLinks: Attribute.Component<'helpers.social-media', true>;
+    description: Attribute.Text;
+    tour_operator_companies: Attribute.Relation<
+      'api::tour-operator.tour-operator',
+      'manyToMany',
+      'api::tour-operator-company.tour-operator-company'
+    >;
+    tour_operator_directions: Attribute.Relation<
+      'api::tour-operator.tour-operator',
+      'manyToMany',
+      'api::tour-operator-direction.tour-operator-direction'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::tour-operator.tour-operator',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::tour-operator.tour-operator',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiTourOperatorCompanyTourOperatorCompany
   extends Schema.CollectionType {
   collectionName: 'tour_operator_companies';
@@ -3803,6 +3864,11 @@ export interface ApiTourOperatorCompanyTourOperatorCompany
       'manyToMany',
       'api::tour-guide.tour-guide'
     >;
+    tour_operators: Attribute.Relation<
+      'api::tour-operator-company.tour-operator-company',
+      'manyToMany',
+      'api::tour-operator.tour-operator'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -3824,6 +3890,44 @@ export interface ApiTourOperatorCompanyTourOperatorCompany
       'api::tour-operator-company.tour-operator-company'
     >;
     locale: Attribute.String;
+  };
+}
+
+export interface ApiTourOperatorDirectionTourOperatorDirection
+  extends Schema.CollectionType {
+  collectionName: 'tour_operator_directions';
+  info: {
+    singularName: 'tour-operator-direction';
+    pluralName: 'tour-operator-directions';
+    displayName: 'Tour Operator Direction';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Text;
+    media: Attribute.Media;
+    tour_operators: Attribute.Relation<
+      'api::tour-operator-direction.tour-operator-direction',
+      'manyToMany',
+      'api::tour-operator.tour-operator'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::tour-operator-direction.tour-operator-direction',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::tour-operator-direction.tour-operator-direction',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
   };
 }
 
@@ -3877,7 +3981,9 @@ declare module '@strapi/types' {
       'api::tour.tour': ApiTourTour;
       'api::tour-category.tour-category': ApiTourCategoryTourCategory;
       'api::tour-guide.tour-guide': ApiTourGuideTourGuide;
+      'api::tour-operator.tour-operator': ApiTourOperatorTourOperator;
       'api::tour-operator-company.tour-operator-company': ApiTourOperatorCompanyTourOperatorCompany;
+      'api::tour-operator-direction.tour-operator-direction': ApiTourOperatorDirectionTourOperatorDirection;
     }
   }
 }

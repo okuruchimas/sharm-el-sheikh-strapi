@@ -1,0 +1,71 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tour_operators",
+  "info": {
+    "singularName": "tour-operator",
+    "pluralName": "tour-operators",
+    "displayName": "Tour Operator",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "slug": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "img": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "languages": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::language.language",
+      "inversedBy": "tour_operators"
+    },
+    "totalComments": {
+      "type": "integer"
+    },
+    "averageRating": {
+      "type": "float"
+    },
+    "comments": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::comment.comment",
+      "inversedBy": "tour_operators"
+    },
+    "socialLinks": {
+      "type": "component",
+      "repeatable": true,
+      "component": "helpers.social-media"
+    },
+    "description": {
+      "type": "text"
+    },
+    "tour_operator_companies": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tour-operator-company.tour-operator-company",
+      "inversedBy": "tour_operators"
+    },
+    "tour_operator_directions": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tour-operator-direction.tour-operator-direction",
+      "inversedBy": "tour_operators"
+    }
+  }
+}
