@@ -55,6 +55,12 @@
       "relation": "manyToMany",
       "target": "api::company.company",
       "mappedBy": "comments"
+    },
+    "tour_operators": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tour-operator.tour-operator",
+      "mappedBy": "comments"
     }
   }
 }

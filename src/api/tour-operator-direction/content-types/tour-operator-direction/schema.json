@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tour_operator_directions",
+  "info": {
+    "singularName": "tour-operator-direction",
+    "pluralName": "tour-operator-directions",
+    "displayName": "Tour Operator Direction"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "media": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "tour_operators": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tour-operator.tour-operator",
+      "mappedBy": "tour_operator_directions"
+    }
+  }
+}
