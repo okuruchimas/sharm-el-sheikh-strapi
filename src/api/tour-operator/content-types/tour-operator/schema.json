@@ -4,30 +4,55 @@
   "info": {
     "singularName": "tour-operator",
     "pluralName": "tour-operators",
-    "displayName": "Tour Operator",
-    "description": ""
+    "displayName": "Tour Operator"
   },
   "options": {
     "draftAndPublish": true
   },
-  "pluginOptions": {},
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
   "attributes": {
     "slug": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "type": "string"
     },
     "name": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "type": "string"
     },
+    "description": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "text"
+    },
     "img": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ]
+      ],
+      "type": "media",
+      "multiple": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "languages": {
       "type": "relation",
@@ -36,9 +61,19 @@
       "inversedBy": "tour_operators"
     },
     "totalComments": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "type": "integer"
     },
     "averageRating": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "type": "float"
     },
     "comments": {
@@ -50,10 +85,12 @@
     "socialLinks": {
       "type": "component",
       "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "component": "helpers.social-media"
-    },
-    "description": {
-      "type": "text"
     },
     "tour_operator_companies": {
       "type": "relation",
@@ -65,7 +102,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::tour-operator-direction.tour-operator-direction",
-      "inversedBy": "tour_operators"
+      "mappedBy": "tour_operators"
     }
   }
 }
