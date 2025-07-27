@@ -9,12 +9,26 @@
   "options": {
     "draftAndPublish": true
   },
-  "pluginOptions": {},
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
   "attributes": {
     "title": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "type": "string"
     },
     "description": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "type": "text"
     },
     "media": {
@@ -25,13 +39,18 @@
         "audios"
       ],
       "type": "media",
-      "multiple": true
+      "multiple": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "tour_operators": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::tour-operator.tour-operator",
-      "mappedBy": "tour_operator_directions"
+      "inversedBy": "tour_operator_directions"
     }
   }
 }

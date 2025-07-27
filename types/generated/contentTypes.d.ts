@@ -3712,29 +3712,68 @@ export interface ApiTourOperatorTourOperator extends Schema.CollectionType {
     singularName: 'tour-operator';
     pluralName: 'tour-operators';
     displayName: 'Tour Operator';
-    description: '';
   };
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
-    slug: Attribute.String;
-    name: Attribute.String;
-    img: Attribute.Media;
+    slug: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    name: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    description: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    img: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     languages: Attribute.Relation<
       'api::tour-operator.tour-operator',
       'manyToMany',
       'api::language.language'
     >;
-    totalComments: Attribute.Integer;
-    averageRating: Attribute.Float;
+    totalComments: Attribute.Integer &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    averageRating: Attribute.Float &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     comments: Attribute.Relation<
       'api::tour-operator.tour-operator',
       'manyToMany',
       'api::comment.comment'
     >;
-    socialLinks: Attribute.Component<'helpers.social-media', true>;
-    description: Attribute.Text;
+    socialLinks: Attribute.Component<'helpers.social-media', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     tour_operator_companies: Attribute.Relation<
       'api::tour-operator.tour-operator',
       'manyToMany',
@@ -3760,6 +3799,12 @@ export interface ApiTourOperatorTourOperator extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::tour-operator.tour-operator',
+      'oneToMany',
+      'api::tour-operator.tour-operator'
+    >;
+    locale: Attribute.String;
   };
 }
 
@@ -3904,10 +3949,30 @@ export interface ApiTourOperatorDirectionTourOperatorDirection
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
-    title: Attribute.String;
-    description: Attribute.Text;
-    media: Attribute.Media;
+    title: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    description: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    media: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     tour_operators: Attribute.Relation<
       'api::tour-operator-direction.tour-operator-direction',
       'manyToMany',
@@ -3928,6 +3993,12 @@ export interface ApiTourOperatorDirectionTourOperatorDirection
       'admin::user'
     > &
       Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::tour-operator-direction.tour-operator-direction',
+      'oneToMany',
+      'api::tour-operator-direction.tour-operator-direction'
+    >;
+    locale: Attribute.String;
   };
 }
 
