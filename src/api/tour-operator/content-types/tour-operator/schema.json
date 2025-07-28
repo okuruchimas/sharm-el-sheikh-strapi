@@ -19,10 +19,11 @@
     "slug": {
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
         }
       },
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "name": {
       "pluginOptions": {
@@ -30,7 +31,8 @@
           "localized": true
         }
       },
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "description": {
       "pluginOptions": {
@@ -38,7 +40,8 @@
           "localized": true
         }
       },
-      "type": "text"
+      "type": "text",
+      "required": false
     },
     "profileImg": {
       "type": "media",
@@ -62,18 +65,22 @@
     "totalComments": {
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
         }
       },
-      "type": "integer"
+      "type": "integer",
+      "required": true,
+      "default": 0
     },
     "averageRating": {
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
         }
       },
-      "type": "float"
+      "type": "float",
+      "required": true,
+      "default": 0
     },
     "comments": {
       "type": "relation",

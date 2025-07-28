@@ -3724,12 +3724,14 @@ export interface ApiTourOperatorTourOperator extends Schema.CollectionType {
   };
   attributes: {
     slug: Attribute.String &
+      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }>;
     name: Attribute.String &
+      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -3754,17 +3756,21 @@ export interface ApiTourOperatorTourOperator extends Schema.CollectionType {
       'api::language.language'
     >;
     totalComments: Attribute.Integer &
+      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
-      }>;
+      }> &
+      Attribute.DefaultTo<0>;
     averageRating: Attribute.Float &
+      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
-      }>;
+      }> &
+      Attribute.DefaultTo<0>;
     comments: Attribute.Relation<
       'api::tour-operator.tour-operator',
       'manyToMany',
