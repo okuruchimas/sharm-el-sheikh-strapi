@@ -4,7 +4,8 @@
   "info": {
     "singularName": "tour-operator",
     "pluralName": "tour-operators",
-    "displayName": "Tour Operator"
+    "displayName": "Tour Operator",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -39,18 +40,16 @@
       },
       "type": "text"
     },
-    "img": {
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ],
+    "profileImg": {
       "type": "media",
       "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ],
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
         }
       }
     },
