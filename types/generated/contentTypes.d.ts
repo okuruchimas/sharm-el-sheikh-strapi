@@ -3712,6 +3712,7 @@ export interface ApiTourOperatorTourOperator extends Schema.CollectionType {
     singularName: 'tour-operator';
     pluralName: 'tour-operators';
     displayName: 'Tour Operator';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -3740,10 +3741,11 @@ export interface ApiTourOperatorTourOperator extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    img: Attribute.Media &
+    profileImg: Attribute.Media &
+      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }>;
     languages: Attribute.Relation<
