@@ -109,6 +109,14 @@
       "relation": "manyToMany",
       "target": "api::tour-operator-direction.tour-operator-direction",
       "mappedBy": "tour_operators"
+    },
+    "country": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
     }
   }
 }
