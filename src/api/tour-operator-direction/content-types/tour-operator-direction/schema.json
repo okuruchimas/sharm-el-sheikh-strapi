@@ -4,7 +4,8 @@
   "info": {
     "singularName": "tour-operator-direction",
     "pluralName": "tour-operator-directions",
-    "displayName": "Tour Operator Direction"
+    "displayName": "Tour Operator Direction",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -32,14 +33,15 @@
       "type": "text"
     },
     "media": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
       ],
-      "type": "media",
-      "multiple": true,
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -51,6 +53,40 @@
       "relation": "manyToMany",
       "target": "api::tour-operator.tour-operator",
       "inversedBy": "tour_operator_directions"
+    },
+    "type": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "location": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "price": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "highlights": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "helpers.string-array"
     }
   }
 }

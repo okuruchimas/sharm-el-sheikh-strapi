@@ -3792,6 +3792,12 @@ export interface ApiTourOperatorTourOperator extends Schema.CollectionType {
       'manyToMany',
       'api::tour-operator-direction.tour-operator-direction'
     >;
+    country: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -3953,6 +3959,7 @@ export interface ApiTourOperatorDirectionTourOperatorDirection
     singularName: 'tour-operator-direction';
     pluralName: 'tour-operator-directions';
     displayName: 'Tour Operator Direction';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -3986,6 +3993,30 @@ export interface ApiTourOperatorDirectionTourOperatorDirection
       'manyToMany',
       'api::tour-operator.tour-operator'
     >;
+    type: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    location: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    price: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    highlights: Attribute.Component<'helpers.string-array', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
