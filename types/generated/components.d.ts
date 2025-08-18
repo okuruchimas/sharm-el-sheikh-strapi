@@ -16,6 +16,21 @@ export interface ComponentsBanner extends Schema.Component {
   };
 }
 
+export interface ComponentsClickableService extends Schema.Component {
+  collectionName: 'components_components_clickable_services';
+  info: {
+    displayName: 'clickable_service';
+    icon: 'paint';
+    description: '';
+  };
+  attributes: {
+    icon: Attribute.Media;
+    text: Attribute.String;
+    description: Attribute.Text;
+    media: Attribute.Media;
+  };
+}
+
 export interface ComponentsCompanyPageFields extends Schema.Component {
   collectionName: 'components_components_company_page_fields';
   info: {
@@ -221,6 +236,7 @@ declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'components.banner': ComponentsBanner;
+      'components.clickable-service': ComponentsClickableService;
       'components.company-page-fields': ComponentsCompanyPageFields;
       'components.company-schedule': ComponentsCompanySchedule;
       'components.discount': ComponentsDiscount;

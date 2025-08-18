@@ -1699,6 +1699,15 @@ export interface ApiCompanyCompany extends Schema.CollectionType {
       'manyToMany',
       'api::event-card.event-card'
     >;
+    clickable_services: Attribute.Component<
+      'components.clickable-service',
+      true
+    > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

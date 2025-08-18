@@ -200,6 +200,17 @@
       "relation": "manyToMany",
       "target": "api::event-card.event-card",
       "inversedBy": "companies"
+    },
+    "clickable_services": {
+      "displayName": "clickable_service",
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "components.clickable-service"
     }
   }
 }
