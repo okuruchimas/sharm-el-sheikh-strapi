@@ -24,8 +24,8 @@ export interface ComponentsClickableService extends Schema.Component {
     description: '';
   };
   attributes: {
-    icon: Attribute.Media;
-    text: Attribute.String;
+    icon: Attribute.Media & Attribute.Required;
+    text: Attribute.String & Attribute.Required;
     description: Attribute.Text;
     media: Attribute.Media;
   };
