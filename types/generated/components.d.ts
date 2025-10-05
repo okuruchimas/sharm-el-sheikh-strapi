@@ -150,6 +150,18 @@ export interface HeaderNavigationMenu extends Schema.Component {
   };
 }
 
+export interface HelpersLocationWithName extends Schema.Component {
+  collectionName: 'components_helpers_location_with_names';
+  info: {
+    displayName: 'Location With Name';
+    icon: 'globe';
+  };
+  attributes: {
+    locationName: Attribute.String & Attribute.Required;
+    coordinates: Attribute.Component<'helpers.position'>;
+  };
+}
+
 export interface HelpersPosition extends Schema.Component {
   collectionName: 'components_helpers_positions';
   info: {
@@ -259,6 +271,7 @@ declare module '@strapi/types' {
       'components.team-member': ComponentsTeamMember;
       'components.work-schedule': ComponentsWorkSchedule;
       'header.navigation-menu': HeaderNavigationMenu;
+      'helpers.location-with-name': HelpersLocationWithName;
       'helpers.position': HelpersPosition;
       'helpers.social-media': HelpersSocialMedia;
       'helpers.string-array': HelpersStringArray;

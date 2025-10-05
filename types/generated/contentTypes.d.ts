@@ -1738,6 +1738,7 @@ export interface ApiCompanyInfoPageCompanyInfoPage extends Schema.SingleType {
     singularName: 'company-info-page';
     pluralName: 'company-info-pages';
     displayName: 'Company Info Page';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1824,13 +1825,6 @@ export interface ApiCompanyInfoPageCompanyInfoPage extends Schema.SingleType {
           localized: true;
         };
       }>;
-    locations: Attribute.Component<'helpers.string-array', true> &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     registrationNum: Attribute.String &
       Attribute.Required &
       Attribute.SetPluginOptions<{
@@ -1897,6 +1891,13 @@ export interface ApiCompanyInfoPageCompanyInfoPage extends Schema.SingleType {
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
+        };
+      }>;
+    locations: Attribute.Component<'helpers.location-with-name', true> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
         };
       }>;
     createdAt: Attribute.DateTime;
