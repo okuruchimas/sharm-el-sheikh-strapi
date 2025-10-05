@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_helpers_location_with_names",
+  "info": {
+    "displayName": "Location With Name",
+    "icon": "globe"
+  },
+  "options": {},
+  "attributes": {
+    "locationName": {
+      "type": "string",
+      "required": true
+    },
+    "coordinates": {
+      "type": "component",
+      "repeatable": false,
+      "component": "helpers.position"
+    }
+  }
+}

@@ -4,7 +4,8 @@
   "info": {
     "singularName": "company-info-page",
     "pluralName": "company-info-pages",
-    "displayName": "Company Info Page"
+    "displayName": "Company Info Page",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -34,17 +35,17 @@
       "required": true
     },
     "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images"
       ],
-      "type": "media",
-      "multiple": false,
       "pluginOptions": {
         "i18n": {
           "localized": false
         }
-      },
-      "required": true
+      }
     },
     "paymentFormTitle": {
       "pluginOptions": {
@@ -119,17 +120,6 @@
       "type": "string",
       "required": true
     },
-    "locations": {
-      "type": "component",
-      "repeatable": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "component": "helpers.string-array",
-      "required": true
-    },
     "registrationNum": {
       "pluginOptions": {
         "i18n": {
@@ -167,17 +157,17 @@
       "required": true
     },
     "documents": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images"
       ],
-      "type": "media",
-      "multiple": true,
       "pluginOptions": {
         "i18n": {
           "localized": false
         }
-      },
-      "required": false
+      }
     },
     "teamTitle": {
       "pluginOptions": {
@@ -225,6 +215,18 @@
         }
       },
       "type": "string",
+      "required": true
+    },
+    "locations": {
+      "displayName": "Location With Name",
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "component": "helpers.location-with-name",
       "required": true
     }
   }
