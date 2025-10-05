@@ -99,6 +99,20 @@ export interface ComponentsHomeNavMenu extends Schema.Component {
   };
 }
 
+export interface ComponentsTeamMember extends Schema.Component {
+  collectionName: 'components_components_team_members';
+  info: {
+    displayName: 'Team Member';
+    icon: 'user';
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    position: Attribute.String & Attribute.Required;
+    profileImg: Attribute.Media & Attribute.Required;
+    socialLink: Attribute.String;
+  };
+}
+
 export interface ComponentsWorkSchedule extends Schema.Component {
   collectionName: 'components_components_work_schedules';
   info: {
@@ -242,6 +256,7 @@ declare module '@strapi/types' {
       'components.discount': ComponentsDiscount;
       'components.entertainment-service': ComponentsEntertainmentService;
       'components.home-nav-menu': ComponentsHomeNavMenu;
+      'components.team-member': ComponentsTeamMember;
       'components.work-schedule': ComponentsWorkSchedule;
       'header.navigation-menu': HeaderNavigationMenu;
       'helpers.position': HelpersPosition;
