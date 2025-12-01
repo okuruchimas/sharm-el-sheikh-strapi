@@ -211,6 +211,14 @@
         }
       },
       "component": "components.clickable-service"
+    },
+    "isPage": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "boolean"
     }
   }
 }
