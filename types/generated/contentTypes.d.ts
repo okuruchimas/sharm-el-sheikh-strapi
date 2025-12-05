@@ -788,6 +788,103 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface PluginTranslateBatchTranslateJob
+  extends Schema.CollectionType {
+  collectionName: 'translate_batch_translate_jobs';
+  info: {
+    singularName: 'batch-translate-job';
+    pluralName: 'batch-translate-jobs';
+    displayName: 'Translate Batch Translate Job';
+  };
+  options: {
+    draftAndPublish: false;
+    comment: '';
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    contentType: Attribute.String;
+    sourceLocale: Attribute.String;
+    targetLocale: Attribute.String;
+    entityIds: Attribute.JSON;
+    status: Attribute.Enumeration<
+      [
+        'created',
+        'setup',
+        'running',
+        'paused',
+        'finished',
+        'cancelled',
+        'failed'
+      ]
+    > &
+      Attribute.DefaultTo<'created'>;
+    failureReason: Attribute.JSON;
+    progress: Attribute.Float & Attribute.DefaultTo<0>;
+    autoPublish: Attribute.Boolean & Attribute.DefaultTo<false>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::translate.batch-translate-job',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::translate.batch-translate-job',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface PluginTranslateUpdatedEntry extends Schema.CollectionType {
+  collectionName: 'translate_updated_entries';
+  info: {
+    singularName: 'updated-entry';
+    pluralName: 'updated-entries';
+    displayName: 'Translate updated Entry';
+  };
+  options: {
+    draftAndPublish: false;
+    comment: '';
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    contentType: Attribute.String;
+    groupID: Attribute.String;
+    localesWithUpdates: Attribute.JSON;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::translate.updated-entry',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::translate.updated-entry',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiAdvertisementAdvertisement extends Schema.CollectionType {
   collectionName: 'advertisements';
   info: {
@@ -4266,6 +4363,8 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'plugin::translate.batch-translate-job': PluginTranslateBatchTranslateJob;
+      'plugin::translate.updated-entry': PluginTranslateUpdatedEntry;
       'api::advertisement.advertisement': ApiAdvertisementAdvertisement;
       'api::advertisement-category.advertisement-category': ApiAdvertisementCategoryAdvertisementCategory;
       'api::animation-company.animation-company': ApiAnimationCompanyAnimationCompany;
