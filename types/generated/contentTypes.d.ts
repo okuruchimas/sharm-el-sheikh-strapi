@@ -1548,6 +1548,13 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       'manyToMany',
       'api::company.company'
     >;
+    markerIconWC: Attribute.Media &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
