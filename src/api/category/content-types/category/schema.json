@@ -75,6 +75,19 @@
       "relation": "manyToMany",
       "target": "api::company.company",
       "mappedBy": "categories"
+    },
+    "markerIconWC": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "required": true
     }
   }
 }
